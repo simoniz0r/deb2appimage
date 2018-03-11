@@ -110,7 +110,7 @@ atexit()
 error()
 {
   if type yad >/dev/null 2>&1; then
-    LD_LIBRARY_PATH="" yad --border=15 --center --on-top --width=400 --height=250 --error --button=gtk-ok: 0--text="${1}" 2>/dev/null
+    LD_LIBRARY_PATH="" yad --borders=15 --center --on-top --width=400 --height=250 --error --button=gtk-ok: 0--text="${1}" 2>/dev/null
   elif type zenity >/dev/null 2>&1; then
     LD_LIBRARY_PATH="" zenity --error --text="${1}" 2>/dev/null
   elif type kdialog >/dev/null 2>&1; then
@@ -130,7 +130,7 @@ yesno()
   TITLE=$1
   TEXT=$2
   if type yad >/dev/null 2>&1; then
-    LD_LIBRARY_PATH="" yad --border=15 --center --on-top --width=400 --height=250 --button=gtk-no:1 --button=gtk-yes:0 --question --title="$TITLE" --text="$TEXT" 2>/dev/null && RETURN="yes" || RETURN="no"
+    LD_LIBRARY_PATH="" yad --borders=15 --center --on-top --width=400 --height=250 --button=gtk-no:1 --button=gtk-yes:0 --question --title="$TITLE" --text="$TEXT" 2>/dev/null && RETURN="yes" || RETURN="no"
   elif type zenity >/dev/null 2>&1; then
     LD_LIBRARY_PATH="" zenity --question --title="$TITLE" --text="$TEXT" 2>/dev/null && RETURN="yes" || RETURN="no"
   elif type kdialog >/dev/null 2>&1; then

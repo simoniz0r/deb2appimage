@@ -6,6 +6,7 @@ Contrary to the name, deb2appimage may also be used with other package types as 
 
 It will help to make yourself familiar with [Debian's package website](https://www.debian.org/distrib/packages) for getting the names of dependencies, which architecture they are for, and which version of Debian we should grab them from.
 
+Dependencies: curl, tar, jq, binutils (jq and binutils are included in [deb2appimage's AppImage](https://github.com/simoniz0r/deb2appimage/releases))
 # Arguments
 
 ```

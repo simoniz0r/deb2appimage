@@ -3,7 +3,7 @@
     {
         "prerun": "curl -sL https://s3.amazonaws.com/parsec-build/package/parsec-linux.deb -o ~/.cache/deb2appimage/debs/parsec-linux.deb",
         "name": "parsec",
-        "version": null,
+        "version": "linux",
         "deps": "libsndio6.1,expat,libexpat1",
         "repoarch": "amd64",
         "distrorepo": "Debian",

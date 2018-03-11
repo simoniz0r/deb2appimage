@@ -1,16 +1,16 @@
 {
     "buildinfo": [
     {
-        "prerun": "/home/simonizor/github/deb2appimage/builddeb2appimage-prerun.sh",
-        "name": "deb2appimage",
-        "version": "0.0.1",
-        "deps": "binutils,jq,libjq1,libonig2",
-        "repoarch": "amd64,amd64,amd64,amd64",
+        "prerun": "~/github/deb2appimage/scripts/ansiweather-prerun.sh",
+        "name": "ansiweather",
+        "version": "1.11",
+        "deps": "ansiweather,bc,libreadline6,libtinfo5,jq,libjq1,libonig2",
+        "repoarch": "all,amd64,amd64,amd64,amd64,amd64,amd64",
         "distrorepo": "Debian",
-        "repoversion": "jessie,jessie-backports,jessie-backports,jessie",
-        "binarypath": "/usr/bin/deb2appimage",
-        "desktoppath": "/usr/share/deb2appimage/deb2appimage.desktop",
-        "iconpath": "/usr/share/deb2appimage/deb2appimage.png",
+        "repoversion": "buster,jessie,jessie,jessie,jessie-backports,jessie-backports,jessie",
+        "binarypath": "/usr/bin/ansiweather",
+        "desktoppath": "/usr/share/ansiweather/ansiweather.desktop",
+        "iconpath": "/usr/share/ansiweather/ansiweather.png",
         "usewrapper": "false",
         "postrun": null
     }
@@ -26,14 +26,14 @@
         "setperllib": "false",
         "setgsettingsschemadir": "false",
         "setqtpluginpath": "false",
-        "exec": "/usr/bin/deb2appimage"
+        "exec": "/usr/bin/ansiweather"
     }
     ],
     "authors": [
     {
         "type": "Author",
-        "author": "simonizor",
-        "url": "http://www.simonizor.net"
+        "author": "fcambus",
+        "url": "https://github.com/fcambus/ansiweather"
     },
     {
         "type": "AppImage Maintainer",

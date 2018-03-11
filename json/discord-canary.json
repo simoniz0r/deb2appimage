@@ -1,7 +1,7 @@
 {
     "buildinfo": [
     {
-        "prerun": "/home/simonizor/github/deb2appimage/discord-canary-prerun.sh",
+        "prerun": "/home/simonizor/github/deb2appimage/scripts/discord-canary-prerun.sh",
         "name": "discord-canary",
         "version": "0.0.45",
         "deps": "libc++1,libnotify4,libatomic1,libxss1,libxtst6,libappindicator1,libnspr4,libnss3",

@@ -2,7 +2,7 @@
     "buildinfo": [
     {
         "prerun": "curl -sL https://s3.amazonaws.com/parsec-build/package/parsec-linux.deb -o ~/.cache/deb2appimage/debs/parsec-linux.deb",
-        "name": "parsec-linux",
+        "name": "parsec",
         "version": null,
         "deps": "libsndio6.1,expat,libexpat1",
         "repoarch": "amd64",
@@ -26,7 +26,7 @@
         "setperllib": "false",
         "setgsettingsschemadir": "false",
         "setqtpluginpath": "false",
-        "exec": "/usr/bin/parsec"
+        "exec": "/usr/bin/parsec.wrapper"
     }
     ],
     "authors": [

@@ -12,7 +12,7 @@
         "desktoppath": "/usr/share/applications/parsec.desktop",
         "iconpath": "/usr/share/icons/hicolor/256x256/apps/parsec.png",
         "usewrapper": "true",
-        "postrun": null
+        "postrun": "sed -i s%^Terminal=.*%Terminal=true%g ~/.cache/deb2appimage/AppDir/parsec.desktop"
     }
     ],
     "apprunconf": [

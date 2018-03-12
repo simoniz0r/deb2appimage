@@ -10,7 +10,7 @@ Dependencies: curl, tar, jq, binutils (jq and binutils are included in [deb2appi
 # Arguments
 
 ```
---help          Show this output and exit
+--help|-h          Show this output and exit
 
 --json|-j       Specify the location of the json file for building the AppImage (required)
 

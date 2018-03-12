@@ -237,6 +237,11 @@ APPRUN_SET_XDG="$(jq -r '.apprunconf[0].setxdgdatadirs' "$HOME"/.cache/deb2appim
 APPRUN_SET_PERL="$(jq -r '.apprunconf[0].setperllib' "$HOME"/.cache/deb2appimage/build.json | tr '[:lower:]' '[:upper:]')"
 APPRUN_SET_QT="$(jq -r '.apprunconf[0].setqtpluginpath' "$HOME"/.cache/deb2appimage/build.json | tr '[:lower:]' '[:upper:]')"
 APPRUN_EXEC="$(jq -r '.apprunconf[0].exec' "$HOME"/.cache/deb2appimage/build.json)"
+case $APPRUN_EXEC in
+    /*)
+        APPRUN_EXEC=".$APPRUN_EXEC"
+        ;;
+esac
 cat >"$HOME"/.cache/deb2appimage/AppDir/AppRun.conf << EOL
 APPRUN_SET_PATH="$APPRUN_SET_PATH"
 APPRUN_SET_LD_LIBRARY_PATH="$APPRUN_SET_LIBPATH"
@@ -247,7 +252,7 @@ APPRUN_SET_XDG_DATA_DIRS="$APPRUN_SET_XDG"
 APPRUN_SET_PERLLIB="$APPRUN_SET_PERL"
 APPRUN_SET_GSETTINGS_SCHEMA_DIR="$APPRUN_SET_GSETTINGS"
 APPRUN_SET_QT_PLUGIN_PATH="$APPRUN_SET_QT"
-APPRUN_EXEC=".$APPRUN_EXEC"
+APPRUN_EXEC="$APPRUN_EXEC"
 
 EOL
 }

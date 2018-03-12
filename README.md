@@ -151,7 +151,7 @@ The path to the binary file of the application after being extracted from the de
 "desktoppath": "/usr/share/applications/parsec.desktop",
 ```
 
-The path to the desktop file of the application after being extracted from the deb package.  This file ***is required***, so if the package does not provide one (many applications that run via command line will not), one will need to be created manually in a prerun script.
+The path to the desktop file of the application after being extracted from the deb package.  This file ***is required***, so if the package does not provide one (many applications that run via command line will not), one will need to be created manually and placed somewhere in `~/.cache/deb2appimage/AppDir` in a prerun script.
 
 **iconpath:**
 
@@ -245,7 +245,7 @@ Adds `/usr/share/perl5` within the AppImage to the `PERLLIB` .
 "setgsettingsschemadir": "false",
 ```
 
-Adds `/usr/share/glib-2.0/schemas` to the `GSETTINGS_SCHEMA_DIR` .
+Adds `/usr/share/glib-2.0/schemas` within the AppImage to the `GSETTINGS_SCHEMA_DIR` .
 
 **setqtpluginpath:**
 
@@ -261,4 +261,4 @@ Adds Qt paths within the AppImage to the `QT_PLUGIN_PATH` .
 "exec": "/usr/bin/parsec.wrapper"
 ```
 
-This is ***required***  in most cases, it will be the same as the `binarypath`.  If `usewrapper` is set to `true`, then the path to the wrapper should be inserted here.
+This is ***required***  in most cases, it will be the same as the `binarypath`.  If `usewrapper` is set to `true`, then the path to the wrapper should be inserted here.  If a special script is needed to make the application launch properly, that script may be placed somewhere in `~/.cache/deb2appimage/AppDir` with a `prerun` or `postrun` command/script and then used as the `exec`.

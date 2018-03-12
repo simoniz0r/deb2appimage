@@ -15,6 +15,8 @@ Dependencies: curl, tar, jq, binutils (jq and binutils are included in [deb2appi
 -o|--output     Specify the output directory of the AppImage (optional; $HOME will be used by default)
 
 -q|--quiet      Enable quiet mode
+
+--debug         Enable debug mode
 ```
 
 Examples:
@@ -23,6 +25,7 @@ Examples:
 deb2appimage -j $HOME/my-app.json
 deb2appimage -j $HOME/my-app.json -o $HOME/AppImages
 deb2appimage -j $HOME/my-app.json -o $HOME/AppImages -q
+deb2appimage -j $HOME/my-app.json -o $HOME/AppImages --debug
 ```
 # Setting up the JSON configuration
 

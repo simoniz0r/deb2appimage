@@ -289,6 +289,7 @@ Arguments:
 -j|--json       Specify the location of the json file for building the AppImage (required)
 -o|--output     Specify the output directory of the AppImage (optional; $HOME will be used by default)
 -q|--quiet      Enable quiet mode
+--debug         Enable debug mode
 
 Examples:
 deb2appimage -j $HOME/my-app.json

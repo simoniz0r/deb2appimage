@@ -264,4 +264,4 @@ Adds Qt paths within the AppImage to the `QT_PLUGIN_PATH` .
 "exec": "/usr/bin/parsec.wrapper"
 ```
 
-This is ***required***  in most cases, it will be the same as the `binarypath`.  If `usewrapper` is set to `true`, then the path to the wrapper should be inserted here.  If a special script is needed to make the application launch properly, that script may be placed somewhere in `~/.cache/deb2appimage/AppDir` with a `prerun` or `postrun` command/script and then used as the `exec`.
+This is ***required***.  In most cases, it will be the same as the `binarypath`.  If `usewrapper` is set to `true`, then the path to the wrapper should be inserted here.  If a special script is needed to make the application launch properly, that script may be placed somewhere in `~/.cache/deb2appimage/AppDir` with a `prerun` or `postrun` command/script and then used as the `exec`.

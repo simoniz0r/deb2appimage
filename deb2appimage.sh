@@ -291,7 +291,7 @@ those files will have to be placed in '~/.cache/deb2appimage/AppDir/' manually w
 prerun script.
 
 Arguments:
---help|-h          Show this output and exit
+--help|-h       Show this output and exit
 --json|-j       Specify the location of the json file for building the AppImage (required)
 --output|-o     Specify the output directory of the AppImage (optional; $HOME will be used by default)
 --quiet|-q      Enable quiet mode

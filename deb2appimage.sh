@@ -316,7 +316,7 @@ type tar > /dev/null 2>&1 || echo "tar" >> "$HOME"/.cache/deb2appimage/missingde
 [ -f "$HOME/.cache/deb2appimage/missingdeps" ] && d2aexit 1 "$(cat "$HOME"/.cache/deb2appimage/missingdeps | tr '\n' ',')"
 
 # check required inputs
-[ -z "$D2A_JSON" ] && d2ahelp; d2aexit 2 "Missing required --json input"
+[ -z "$D2A_JSON" ] && d2ahelp && d2aexit 2 "Missing required --json input"
 jq '.' "$D2A_JSON" > /dev/null 2>&1 || d2aexit 2 "$D2A_JSON not valid json file"
 [ -z "$D2A_OUTPUT" ] && D2A_OUTPUT="$HOME"
 

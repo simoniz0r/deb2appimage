@@ -274,9 +274,9 @@ function buildappimage() {
     curl -sL "https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage" -o "$HOME"/.cache/deb2appimage/appimagetool || d2aexit 3 "appimagetool"
     chmod +x "$HOME"/.cache/deb2appimage/appimagetool
     if [ "$D2A_QUIET" = "TRUE" ]; then
-        ARCH="$(uname -m)" "$HOME"/.cache/deb2appimage/appimagetool "$HOME"/.cache/deb2appimage/AppDir "$D2A_OUTPUT"/"$APP_NAME"-"$APP_VERSION"-"$(uname -m)".AppImage > /dev/null 2>&1 || d2aexit 6 "$APP_NAME"
+        ARCH="$(uname -m)" "$HOME"/.cache/deb2appimage/appimagetool "$@" "$HOME"/.cache/deb2appimage/AppDir "$D2A_OUTPUT"/"$APP_NAME"-"$APP_VERSION"-"$(uname -m)".AppImage > /dev/null 2>&1 || d2aexit 6 "$APP_NAME"
     else
-        ARCH="$(uname -m)" "$HOME"/.cache/deb2appimage/appimagetool "$HOME"/.cache/deb2appimage/AppDir "$D2A_OUTPUT"/"$APP_NAME"-"$APP_VERSION"-"$(uname -m)".AppImage || d2aexit 6 "$APP_NAME"
+        ARCH="$(uname -m)" "$HOME"/.cache/deb2appimage/appimagetool "$@" "$HOME"/.cache/deb2appimage/AppDir "$D2A_OUTPUT"/"$APP_NAME"-"$APP_VERSION"-"$(uname -m)".AppImage || d2aexit 6 "$APP_NAME"
     fi
 }
 

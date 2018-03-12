@@ -10,11 +10,11 @@ Dependencies: curl, tar, jq, binutils (jq and binutils are included in [deb2appi
 # Arguments
 
 ```
--j|--json       Specify the location of the json file for building the AppImage (required)
+--json|-j       Specify the location of the json file for building the AppImage (required)
 
--o|--output     Specify the output directory of the AppImage (optional; $HOME will be used by default)
+--output|-o     Specify the output directory of the AppImage (optional; $HOME will be used by default)
 
--q|--quiet      Enable quiet mode
+--quiet|-q      Enable quiet mode
 
 --debug         Enable debug mode
 ```

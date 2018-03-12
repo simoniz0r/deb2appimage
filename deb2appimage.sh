@@ -286,15 +286,16 @@ those files will have to be placed in '~/.cache/deb2appimage/AppDir/' manually w
 prerun script.
 
 Arguments:
--j|--json       Specify the location of the json file for building the AppImage (required)
--o|--output     Specify the output directory of the AppImage (optional; $HOME will be used by default)
--q|--quiet      Enable quiet mode
+--json|-j       Specify the location of the json file for building the AppImage (required)
+--output|-o     Specify the output directory of the AppImage (optional; $HOME will be used by default)
+--quiet|-q      Enable quiet mode
 --debug         Enable debug mode
 
 Examples:
 deb2appimage -j $HOME/my-app.json
 deb2appimage -j $HOME/my-app.json -o $HOME/AppImages
 deb2appimage -j $HOME/my-app.json -o $HOME/AppImages -q
+deb2appimage -j $HOME/my-app.json -o $HOME/AppImages --debug
 "
 }
 

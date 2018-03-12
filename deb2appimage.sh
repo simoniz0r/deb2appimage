@@ -307,16 +307,18 @@ case $1 in
         ;;
 esac
 
-# check required inputs
-[ -z "$D2A_JSON" ] && d2aexit 2 "Missing required --json input" "See --help for more info"
-jq '.' "$D2A_JSON" > /dev/null 2>&1 || d2aexit 2 "$D2A_JSON not valid json file"
-[ -z "$D2A_OUTPUT" ] && D2A_OUTPUT="$HOME"
 # check for deb2appimage's dependencies and exit if not installed
+mkdir -p "$HOME"/.cache/deb2appimage
 type jq > /dev/null 2>&1 || echo "jq" >> "$HOME"/.cache/deb2appimage/missingdeps
 type curl > /dev/null 2>&1 || echo "curl" >> "$HOME"/.cache/deb2appimage/missingdeps
 type ar > /dev/null 2>&1 || echo "ar (binutils)" >> "$HOME"/.cache/deb2appimage/missingdeps
 type tar > /dev/null 2>&1 || echo "tar" >> "$HOME"/.cache/deb2appimage/missingdeps
 [ -f "$HOME/.cache/deb2appimage/missingdeps" ] && d2aexit 1 "$(cat "$HOME"/.cache/deb2appimage/missingdeps | tr '\n' ',')"
+
+# check required inputs
+[ -z "$D2A_JSON" ] && d2aexit 2 "Missing required --json input" "See --help for more info"
+jq '.' "$D2A_JSON" > /dev/null 2>&1 || d2aexit 2 "$D2A_JSON not valid json file"
+[ -z "$D2A_OUTPUT" ] && D2A_OUTPUT="$HOME"
 
 d2aprerun
 [ ! "$D2A_QUIET" = "TRUE" ] && echo "Executing prerun..."

@@ -145,7 +145,7 @@ function getlatestdeb() {
             ;;
     esac
     # find latest deb url using grep and head -n 1
-    LATEST_DEB_URL="$(wget "https://packages.$DEB_DISTRO_URL/$DEB_RELEASE/$DEB_ARCH/$DEB_NAME/download" -qO - | grep "<li>*..*$DEB_ARCH.deb" | cut -f2 -d'"' | head -n 1)"
+    LATEST_DEB_URL="$(curl -sL "https://packages.$DEB_DISTRO_URL/$DEB_RELEASE/$DEB_ARCH/$DEB_NAME/download" | grep "<li>*..*$DEB_ARCH.deb" | cut -f2 -d'"' | head -n 1)"
     curl -sL "$LATEST_DEB_URL" -o "$HOME"/.cache/deb2appimage/debs/"$DEB_NAME".deb || d2aexit 3 "$DEB_NAME.deb" "URL: $LATEST_DEB_URL"
 }
 

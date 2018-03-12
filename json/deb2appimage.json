@@ -1,7 +1,7 @@
 {
     "buildinfo": [
     {
-        "prerun": "/home/simonizor/github/deb2appimage/scripts/builddeb2appimage-prerun.sh",
+        "prerun": "~/github/deb2appimage/scripts/builddeb2appimage-prerun.sh",
         "name": "deb2appimage",
         "version": "0.0.1",
         "deps": "binutils,jq,libjq1,libonig2",

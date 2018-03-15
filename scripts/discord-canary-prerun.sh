@@ -46,7 +46,17 @@ case $1 in
         exit 0
         ;;
     *)
-        ./usr/bin/discord-canary.wrapper && sleep 15
+        ./usr/bin/discord-canary.wrapper &
+        if ! pgrep DiscordCanary; then
+            sleep 60
+        else
+            sleep 15
+        fi
+        CANARY_VER_DIR="$(dir -C -w 1 $HOME/.config/discordcanary | grep '^[0-9].[0-9].[0-9]')"
+        if [ -d "$HOME/.config/discordcanary/$CANARY_VER_DIR/modules/pending" ] && [ $(dir -C -w 1 $HOME/.config/discordcanary/$CANARY_VER_DIR/modules/pending | wc -l) -gt 0 ]; then
+            sleep 240
+        fi
+        exit 0
         ;;
 esac
 

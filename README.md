@@ -1,6 +1,6 @@
 # deb2appimage
 
-deb2appimage uses deb packages from Debian's repos to build AppImages based on simple JSON configuration.  The debs are downloaded using `curl` and extracted using `ar x` so that AppImages can be built from any distribution.  The JSON configuration files are setup in a way that they should be easy to understand, yet flexible enough to work with AppImages that require extra tweaking before building.  `~/.cache/deb2appimage` is used as a temporary directory for building AppImages, and is deleted after run.
+deb2appimage uses deb packages from Debian's and/or Ubuntu's repos to build AppImages based on simple JSON configuration.  The debs are downloaded using `curl` and extracted using `ar x` so that AppImages can be built from any distribution.  The JSON configuration files are setup in a way that they should be easy to understand, yet flexible enough to work with AppImages that require extra tweaking before building.  `~/.cache/deb2appimage` is used as a temporary directory for building AppImages, and is deleted after run.
 
 Contrary to the name, deb2appimage may also be used with other package types as the source for the application (or even the deps), but these files must be downloaded and placed manually in a prerun script.
 

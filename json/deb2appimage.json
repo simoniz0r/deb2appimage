@@ -3,7 +3,7 @@
     {
         "prerun": "~/github/deb2appimage/scripts/builddeb2appimage-prerun.sh",
         "name": "deb2appimage",
-        "version": "0.0.1",
+        "version": "0.0.2",
         "deps": "binutils,jq,libjq1,libonig2",
         "repoarch": "amd64,amd64,amd64,amd64",
         "distrorepo": "Debian",

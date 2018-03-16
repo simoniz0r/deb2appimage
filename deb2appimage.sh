@@ -37,7 +37,7 @@ function d2aexit() {
     case $1 in
         # normal exit; remove "$HOME"/.cache/deb2appimage before exiting
         0)
-            rm -rf "$HOME"/.cache/deb2appimage
+            rm -rf "$HOME"/.cache/deb2appimage/*
             exit 0
             ;;
         # missing dependencies
@@ -48,7 +48,7 @@ function d2aexit() {
                 [ -n "$3" ] && echo "$3"
                 echo "Exit code 1"
             fi
-            rm -rf "$HOME"/.cache/deb2appimage
+            rm -rf "$HOME"/.cache/deb2appimage/*
             exit 1
             ;;
         # user input error
@@ -59,7 +59,7 @@ function d2aexit() {
                 [ -n "$3" ] && echo "$3"
                 echo "Exit code 2"
             fi
-            rm -rf "$HOME"/.cache/deb2appimage
+            rm -rf "$HOME"/.cache/deb2appimage/*
             exit 2
             ;;
         # curl error
@@ -70,7 +70,7 @@ function d2aexit() {
                 [ -n "$3" ] && echo "$3"
                 echo "Exit code 3"
             fi
-            rm -rf "$HOME"/.cache/deb2appimage
+            rm -rf "$HOME"/.cache/deb2appimage/*
             exit 3
             ;;
         # file/dir error
@@ -81,7 +81,7 @@ function d2aexit() {
                 [ -n "$3" ] && echo "$3"
                 echo "Exit code 4"
             fi
-            rm -rf "$HOME"/.cache/deb2appimage
+            rm -rf "$HOME"/.cache/deb2appimage/*
             exit 4
             ;;
         # deb extraction error
@@ -92,7 +92,7 @@ function d2aexit() {
                 [ -n "$3" ] && echo "$3"
                 echo "Exit code 5"
             fi
-            rm -rf "$HOME"/.cache/deb2appimage
+            rm -rf "$HOME"/.cache/deb2appimage/*
             exit 5
             ;;
         # appimagetool error
@@ -103,7 +103,7 @@ function d2aexit() {
                 [ -n "$3" ] && echo "$3"
                 echo "Exit code 6"
             fi
-            rm -rf "$HOME"/.cache/deb2appimage
+            rm -rf "$HOME"/.cache/deb2appimage/*
             exit 6
             ;;
     esac
@@ -183,7 +183,7 @@ function debextract () {
     rm -f "$HOME"/.cache/deb2appimage/debs/temp/data.tar.*
     chmod -R 755 ~/.cache/deb2appimage
     cp -r "$HOME"/.cache/deb2appimage/debs/temp/* "$HOME"/.cache/deb2appimage/AppDir/
-    rm -rf "$HOME"/.cache/deb2appimage/debs/temp/*
+    rm -rf "$HOME"/.cache/deb2appimage/*/debs/temp/*
 }
 
 # function that runs a for loop to find all downloaded debs and extract them
@@ -191,7 +191,7 @@ function finddownloadeddebs() {
     for debpkg in $(dir -C -w 1 "$HOME"/.cache/deb2appimage/debs); do
         debextract "$debpkg" || d2aexit 5 "$debpkg"
     done
-    rm -rf "$HOME"/.cache/deb2appimage/debs
+    rm -rf "$HOME"/.cache/deb2appimage/*/debs
 }
 
 # function that places files in places where appimagetool expects them to be for building AppImage
@@ -281,7 +281,7 @@ function buildappimage() {
 }
 
 function d2ahelp() {
-printf '%s\n' "deb2appimage 0.0.1
+printf '%s\n' "deb2appimage 0.0.2
 Usage deb2appimage [argument] [input]
 
 deb2appimage is a tool for creating AppImages using deb packages. json files are used

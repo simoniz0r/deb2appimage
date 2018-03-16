@@ -2,9 +2,10 @@
 
 curl -sL 'https://discordapp.com/api/download/canary?platform=linux&format=deb' -o "$HOME"/.cache/deb2appimage/debs/discord-canary.deb || exit 1
 mkdir -p ~/.cache/deb2appimage/AppDir/usr/bin
-cp ~/github/all-releases/deb2appimage-0.0.1-x86_64.AppImage ~/.cache/deb2appimage/AppDir/usr/bin/deb2appimage
-cp ~/github/deb2appimage/json/discord-canary.json ~/.cache/deb2appimage/AppDir/usr/bin/discord-canary.json
-cp ~/github/deb2appimage/scripts/discord-canary-prerun2.sh ~/.cache/deb2appimage/AppDir/usr/bin/.discord-canary-prerun.sh
+mv ~/.cache/deb2appimage/deb2appimage.AppImage ~/.cache/deb2appimage/AppDir/usr/bin/deb2appimage
+cp ~/.cache/deb2appimage/discord-canary-prerun.sh ~/.cache/deb2appimage/AppDir/usr/bin/.discord-canary-prerun.sh
+cp ~/.cache/deb2appimage/discord-canary.json ~/.cache/deb2appimage/AppDir/usr/bin/discord-canary.json
+
 cat >"$HOME"/.cache/deb2appimage/AppDir/usr/bin/discord-canary.sh << \EOL
 #!/bin/bash
 

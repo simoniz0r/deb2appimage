@@ -138,7 +138,7 @@ function getlatestdeb() {
             DEB_DISTRO_URL="debian.org"
             ;;
         Ubuntu|ubuntu)
-            d2aexit 2 "Invalid 'distrorepo' entered in json file" "Ubuntu is not currently supported, sorry"
+            DEB_DISTRO_URL="ubuntu.com"
             ;;
         *)
             d2aexit 2 "Invalid 'distrorepo' entered in json file" "Valid choices are Debian and Ubuntu"

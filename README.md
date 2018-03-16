@@ -115,7 +115,7 @@ The version of the application.  If no version or `null` is entered, the current
 "deps": "libsndio6.1,expat,libexpat1",
 ```
 
-Dependencies as named on [Debian's package website](https://www.debian.org/distrib/packages).  Only deb packages from Debian's repos are currently supported (Ubuntu support is planned).  Packages must be separated by commas (`package1,package2,package3,package4`).
+Dependencies as named on [Debian's package website](https://www.debian.org/distrib/packages) or [Ubuntu's package website](https://packages.ubuntu.com).  Packages must be separated by commas (`package1,package2,package3,package4`).
 
 **repoarch:**
 
@@ -135,7 +135,7 @@ This specifies the architecture of the dependencies in Debian's repo.  Some pack
 "distrorepo": "Debian",
 ```
 
-This specifies which distribution to get packages from.  Currently, only Debian is supported, but support for Ubuntu is also planned.
+This specifies which distribution to get packages from.  Either Debian or Ubuntu may be used.
 
 **repoversion:**
 

@@ -1,7 +1,9 @@
 {
     "buildinfo": [
     {
-        "prerun": "~/github/deb2appimage/scripts/ansiweather-prerun.sh",
+        "prerun": [
+            null
+        ],
         "name": "ansiweather",
         "version": "1.11",
         "deps": "ansiweather,bc,libreadline6,libtinfo5,jq,libjq1,libonig2",
@@ -9,10 +11,12 @@
         "distrorepo": "Debian",
         "repoversion": "buster,jessie,jessie,jessie,jessie-backports,jessie-backports,jessie",
         "binarypath": "/usr/bin/ansiweather",
-        "desktoppath": "/usr/share/ansiweather/ansiweather.desktop",
-        "iconpath": "/usr/share/ansiweather/ansiweather.png",
+        "desktoppath": null,
+        "iconpath": null,
         "usewrapper": "false",
-        "postrun": null
+        "postrun": [
+            null
+        ]
     }
     ],
     "apprunconf": [

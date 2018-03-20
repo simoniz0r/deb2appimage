@@ -1,9 +1,11 @@
 {
     "buildinfo": [
     {
-        "prerun": "~/github/deb2appimage/scripts/builddeb2appimage-prerun.sh",
+        "prerun": [
+            "~/github/deb2appimage/scripts/builddeb2appimage-prerun.sh"
+        ],
         "name": "deb2appimage",
-        "version": "0.0.2",
+        "version": "0.0.3",
         "deps": "binutils,jq,libjq1,libonig2",
         "repoarch": "amd64,amd64,amd64,amd64",
         "distrorepo": "Debian",
@@ -12,7 +14,9 @@
         "desktoppath": "/usr/share/deb2appimage/deb2appimage.desktop",
         "iconpath": "/usr/share/deb2appimage/deb2appimage.png",
         "usewrapper": "false",
-        "postrun": null
+        "postrun": [
+            null
+        ]
     }
     ],
     "apprunconf": [

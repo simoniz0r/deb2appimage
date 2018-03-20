@@ -1,14 +1,5 @@
 #!/bin/bash
 
-curl -sL 'https://discordapp.com/api/download/canary?platform=linux&format=deb' -o "$HOME"/.cache/deb2appimage/debs/discord-canary.deb || exit 1
-mkdir -p ~/.cache/deb2appimage/AppDir/usr/bin
-mv ~/.cache/deb2appimage/deb2appimage.AppImage ~/.cache/deb2appimage/AppDir/usr/bin/deb2appimage
-cp ~/.cache/deb2appimage/discord-canary-prerun.sh ~/.cache/deb2appimage/AppDir/usr/bin/.discord-canary-prerun.sh
-cp ~/.cache/deb2appimage/discord-canary.json ~/.cache/deb2appimage/AppDir/usr/bin/discord-canary.json
-
-cat >"$HOME"/.cache/deb2appimage/AppDir/usr/bin/discord-canary.sh << \EOL
-#!/bin/bash
-
 REALPATH="$(readlink -f $0)"
 RUNNING_DIR="$(dirname "$REALPATH")"
 
@@ -18,9 +9,8 @@ case $1 in
             mkdir -p "$HOME"/Downloads
             mkdir -p "$HOME"/.cache/deb2appimage
             cp "$RUNNING_DIR"/deb2appimage "$HOME"/.cache/deb2appimage/deb2appimage.AppImage
-            cp "$RUNNING_DIR"/.discord-canary-prerun.sh "$HOME"/.cache/deb2appimage/discord-canary-prerun.sh
+            cp "$RUNNING_DIR"/discord-canary.sh "$HOME"/.cache/deb2appimage/discord-canary.sh
             cp "$RUNNING_DIR"/discord-canary.json "$HOME"/.cache/deb2appimage/discord-canary.json
-            chmod +x "$HOME"/.cache/deb2appimage/discord-canary-prerun.sh
             deb2appimage -j "$RUNNING_DIR"/discord-canary.json -o "$HOME"/Downloads || { echo -e "Failed to build Discord Canary AppImage\nPlease create an issue here: https://github.com/simoniz0r/Discord-Canary-AppImage/issues/new"; exit 1; }
         fi
         ;;
@@ -50,6 +40,3 @@ case $1 in
         exit 0
         ;;
 esac
-
-EOL
-chmod a+x "$HOME"/.cache/deb2appimage/AppDir/usr/bin/discord-canary.sh || exit 1

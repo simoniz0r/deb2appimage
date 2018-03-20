@@ -3,11 +3,11 @@
     {
         "prerun": [ 
             "mkdir -p ~/.cache/deb2appimage/AppDir/usr/bin",
-            "cp ~/github/deb2appimage/scripts/discord-canary.sh ~/.cache/deb2appimage/AppDir/usr/bin/discord-canary.sh",
+            "cp ~/.cache/deb2appimage/discord-canary.sh ~/.cache/deb2appimage/AppDir/usr/bin/discord-canary.sh",
             "chmod a+x ~/.cache/deb2appimage/AppDir/usr/bin/discord-canary.sh",
             "curl -sL -o ~/.cache/deb2appimage/debs/discord-canary.deb 'https://discordapp.com/api/download/canary?platform=linux&format=deb'",
-            "cp ~/github/all-releases/deb2appimage-0.0.3-x86_64.AppImage ~/.cache/deb2appimage/AppDir/usr/bin/deb2appimage",
-            "cp ~/github/deb2appimage/json/discord-canary2.json ~/.cache/deb2appimage/AppDir/usr/bin/discord-canary.json"
+            "mv ~/.cache/deb2appimage/deb2appimage.AppImage ~/.cache/deb2appimage/AppDir/usr/bin/deb2appimage",
+            "cp ~/.cache/deb2appimage/discord-canary.json ~/.cache/deb2appimage/AppDir/usr/bin/discord-canary.json"
         ],
         "name": "discord-canary",
         "version": "0.0.45",

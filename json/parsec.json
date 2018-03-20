@@ -1,7 +1,9 @@
 {
     "buildinfo": [
     {
-        "prerun": "curl -sL https://s3.amazonaws.com/parsec-build/package/parsec-linux.deb -o ~/.cache/deb2appimage/debs/parsec-linux.deb",
+        "prerun": [
+            "curl -sL https://s3.amazonaws.com/parsec-build/package/parsec-linux.deb -o ~/.cache/deb2appimage/debs/parsec-linux.deb"
+        ],
         "name": "parsec",
         "version": "linux",
         "deps": "libsndio6.1,expat,libexpat1",
@@ -12,7 +14,9 @@
         "desktoppath": "/usr/share/applications/parsec.desktop",
         "iconpath": "/usr/share/icons/hicolor/256x256/apps/parsec.png",
         "usewrapper": "true",
-        "postrun": "sed -i s%^Terminal=.*%Terminal=true%g ~/.cache/deb2appimage/AppDir/parsec.desktop"
+        "postrun": [
+            "sed -i s%^Terminal=.*%Terminal=true%g ~/.cache/deb2appimage/AppDir/parsec.desktop"
+        ]
     }
     ],
     "apprunconf": [

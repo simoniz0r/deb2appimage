@@ -1,0 +1,53 @@
+{
+    "buildinfo": [
+    {
+        "prerun": [ 
+            "mkdir -p ~/.cache/deb2appimage/AppDir/usr/bin",
+            "cp ~/.cache/deb2appimage/discord-stable.sh ~/.cache/deb2appimage/AppDir/usr/bin/discord-stable.sh",
+            "chmod a+x ~/.cache/deb2appimage/AppDir/usr/bin/discord-stable.sh",
+            "curl -sL -o ~/.cache/deb2appimage/debs/discord-stable.deb 'https://discordapp.com/api/download/stable?platform=linux&format=deb'",
+            "mv ~/.cache/deb2appimage/deb2appimage.AppImage ~/.cache/deb2appimage/AppDir/usr/bin/deb2appimage",
+            "cp ~/.cache/deb2appimage/discord-stable.json ~/.cache/deb2appimage/AppDir/usr/bin/discord-stable.json"
+        ],
+        "name": "discord-stable",
+        "version": "0.0.7",
+        "deps": "libc++1,libnotify4,libatomic1,libxss1,libxtst6,libappindicator1,libnspr4,libnss3,libfreetype6,libpng12-0",
+        "repoarch": "amd64",
+        "distrorepo": "Debian",
+        "repoversion": "jessie",
+        "binarypath": "/usr/bin/discord",
+        "desktoppath": "/usr/share/discord/discord.desktop",
+        "iconpath": "/usr/share/discord/discord.png",
+        "usewrapper": "true",
+        "postrun": [
+            null
+        ]
+    }
+    ],
+    "apprunconf": [
+    {
+        "setpath": "true",
+        "setlibpath": "true",
+        "setpythonpath": "false",
+        "setpythonhome": "false",
+        "setpythondontwritebytecode": "false",
+        "setxdgdatadirs": "false",
+        "setperllib": "false",
+        "setgsettingsschemadir": "false",
+        "setqtpluginpath": "false",
+        "exec": "/usr/bin/discord-stable.sh"
+    }
+    ],
+    "authors": [
+    {
+        "type": "Author",
+        "author": "Discord",
+        "url": "https://discordapp.com"
+    },
+    {
+        "type": "AppImage Maintainer",
+        "author": "simonizor",
+        "url": "http://www.simonizor.net/discord"
+    }
+    ]
+}

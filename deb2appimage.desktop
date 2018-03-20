@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=deb2appimage
+GenericName=deb2appimage
+Comment=Build AppImages from deb packages on any distro with simple json configuration
+Exec=deb2appimage
+Categories=Utility;
+Icon=deb2appimage
+StartupNotify=false
+Terminal=true

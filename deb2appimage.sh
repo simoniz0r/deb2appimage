@@ -121,7 +121,7 @@ function d2aprerun() {
 
 # execute prerun command if not null
 function preruncmd() {
-    PRERUN_CMD="$(jq -r '.buildinfo[0].prerun[]' "$HOME"/.cache/deb2appimage/build.json | tr '\n' ';' | rev | cut -f2- -d';' | rev | sed "s,;, \&\& ,g;s,~,$HOME,g")"
+    PRERUN_CMD="$(jq -r '.buildinfo[0].prerun[]' "$HOME"/.cache/deb2appimage/build.json | sed "s,^.*,& \&\& ,g" | tr -d '\n' | rev | cut -f3- -d' ' | rev)"
     if [ ! "$PRERUN_CMD" = "null" ]; then
         bash -c "$PRERUN_CMD" || d2aexit 2 "'prerun' failed!" "Failed to execute: $PRERUN_CMD"
     fi
@@ -280,7 +280,7 @@ EOL
 
 # function that runs postruncmd
 function postruncmd() {
-    POSTRUN_CMD="$(jq -r '.buildinfo[0].postrun[]' "$HOME"/.cache/deb2appimage/build.json | tr '\n' ';' | rev | cut -f2- -d';' | rev | sed "s,;, \&\& ,g;s,~,$HOME,g")"
+    POSTRUN_CMD="$(jq -r '.buildinfo[0].postrun[]' "$HOME"/.cache/deb2appimage/build.json | sed "s,^.*,& \&\& ,g" | tr -d '\n' | rev | cut -f3- -d' ' | rev)"
     if [ ! "$POSTRUN_CMD" = "null" ]; then
         bash -c "$POSTRUN_CMD" || d2aexit 2 "'postrun' failed!" "Failed to execute: $POSTRUN_CMD"
     fi

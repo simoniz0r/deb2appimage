@@ -34,7 +34,7 @@ case $1 in
             sleep 60
         fi
         STABLE_VER_DIR="$(dir -C -w 1 $HOME/.config/discordstable | grep '^[0-9].[0-9].[0-9]')"
-        if [ -d "$HOME/.config/discordstable/$STABLE_VER_DIR/modules/pending" ] && [ $(dir -C -w 1 $HOME/.config/discordstable/$STABLE_VER_DIR/modules/pending | wc -l) -gt 0 ]; then
+        if [ -d "$HOME/.config/discord/$STABLE_VER_DIR/modules/pending" ] && [ $(dir -C -w 1 $HOME/.config/discord/$STABLE_VER_DIR/modules/pending | wc -l) -gt 0 ]; then
             sleep 240
         fi
         exit 0

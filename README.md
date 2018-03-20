@@ -40,7 +40,9 @@ Example JSON configuration for creating an AppImage of `parsec`:
 {
     "buildinfo": [
     {
-        "prerun": "curl -sL https://s3.amazonaws.com/parsec-build/package/parsec-linux.deb -o ~/.cache/deb2appimage/debs/parsec-linux.deb",
+        "prerun": [
+            "curl -sL https://s3.amazonaws.com/parsec-build/package/parsec-linux.deb -o ~/.cache/deb2appimage/debs/parsec-linux.deb"
+        ],
         "name": "parsec",
         "version": "linux",
         "deps": "libsndio6.1,expat,libexpat1",
@@ -51,7 +53,9 @@ Example JSON configuration for creating an AppImage of `parsec`:
         "desktoppath": "/usr/share/applications/parsec.desktop",
         "iconpath": "/usr/share/icons/hicolor/256x256/apps/parsec.png",
         "usewrapper": "true",
-        "postrun": null
+        "postrun": [
+            null
+        ]
     }
     ],
     "apprunconf": [
@@ -88,10 +92,12 @@ Example JSON configuration for creating an AppImage of `parsec`:
 **prerun:**
 
 ```
-"prerun": "curl -sL https://s3.amazonaws.com/parsec-build/package/parsec-linux.deb -o ~/.cache/deb2appimage/debs/parsec-linux.deb",
+"prerun": [
+    "curl -sL https://s3.amazonaws.com/parsec-build/package/parsec-linux.deb -o ~/.cache/deb2appimage/debs/parsec-linux.deb"
+],
 ```
 
-Here we download the deb package for parsec using `curl`.  The `prerun` can only be one command, but a bash script may be used to chain commands if more `prerun` preparation is needed.  If no `prerun` command is needed (for example, if the source package for the AppImage is in debian's repos), then put `null` as the `prerun`.
+Here we download the deb package for parsec using `curl`.  Multiple commands may be used, but complex commands may fail and can to be put in bash script.  If no `prerun` command is needed (for example, if the source package for the AppImage is in debian's repos), then put `null` as the `prerun`.
 
 **name:**
 
@@ -182,10 +188,12 @@ If `/usr/bin/myapp` is the `binarypath`, then the `desktopintegration` script wi
 **postrun:**
 
 ```
-"postrun": null
+"postrun": [
+    null
+]
 ```
 
-The postrun command will be ran after all of the debs have been extracted and placed, and also after `~/.cache/deb2appimage/AppDir` has been prepared.  This can be used to make any necessary changes to those files.  As with `prerun`, if more than one command is needed, a bash script may be used to chain commands.  If no `postrun` is needed, put `null` as the `postrun`.
+The postrun command will be ran after all of the debs have been extracted and placed, and also after `~/.cache/deb2appimage/AppDir` has been prepared.  This can be used to make any necessary changes to those files.  As with `prerun`, multiple commands may be used, and a bash script can be used to for complex commands.  If no `postrun` is needed, put `null` as the `postrun`.
 
 ## apprunconf
 

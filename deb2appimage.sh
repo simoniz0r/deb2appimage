@@ -121,9 +121,9 @@ function d2aprerun() {
 
 # execute prerun command if not null
 function preruncmd() {
-    PRERUN_CMD="$(jq -r '.buildinfo[0].prerun' "$HOME"/.cache/deb2appimage/build.json | sed "s%~%$HOME%g")"
+    PRERUN_CMD="$(jq -r '.buildinfo[0].prerun[]' "$HOME"/.cache/deb2appimage/build.json | tr '\n' ';' | rev | cut -f2- -d';' | rev | sed "s,;, \&\& ,g;s,~,$HOME,g")"
     if [ ! "$PRERUN_CMD" = "null" ]; then
-        $PRERUN_CMD || d2aexit 2 "'prerun' command failed"
+        bash -c "$PRERUN_CMD" || d2aexit 2 "'prerun' failed!" "Failed to execute: $PRERUN_CMD"
     fi
 }
 
@@ -203,18 +203,39 @@ function prepareappdir() {
     USE_WRAPPER="$(jq -r '.buildinfo[0].usewrapper' "$HOME"/.cache/deb2appimage/build.json)"
     [ "$APP_NAME" = "null" ] && d2aexit 2 "Missing required 'appname' in json file"
     [ ! -f "$HOME/.cache/deb2appimage/AppDir$BINARY_PATH" ] && d2aexit 2 "Binary file not found at binarypath in json file"
-    [ ! -f "$HOME/.cache/deb2appimage/AppDir$DESKTOP_PATH" ] && d2aexit 2 ".desktop file not found at desktoppath in json file"
-    [ ! -f "$HOME/.cache/deb2appimage/AppDir$ICON_PATH" ] && d2aexit 2 "Icon not found at iconpath in json file"
+    # Download icon if it does not exist
+    if [ ! -f "$HOME/.cache/deb2appimage/AppDir$ICON_PATH" ]; then
+        echo "$ICON_PATH not found; downloading generic icon..."
+        curl -sL "https://raw.githubusercontent.com/iconic/open-iconic/master/png/file-6x.png" -o "$HOME"/.cache/deb2appimage/AppDir/."$APP_NAME".png
+        ICON_PATH="/.$APP_NAME.png"
+    fi
+    # Create .desktop file if it does not exist
+    if [ ! -f "$HOME/.cache/deb2appimage/AppDir$DESKTOP_PATH" ]; then
+        echo "$DESKTOP_PATH not found; creating generic .desktop file..."
+        cat > "$HOME"/.cache/deb2appimage/AppDir/"$APP_NAME".desktop << EOL
+[Desktop Entry]
+Type=Application
+Name="$APP_NAME"
+Comment="$APP_NAME"
+Exec=."$BINARY_PATH"
+Categories=Utility;
+Icon="$APP_NAME"
+StartupNotify=false
+Terminal=true
+
+EOL
+    else
+        cp "$HOME"/.cache/deb2appimage/AppDir"$DESKTOP_PATH" "$HOME"/.cache/deb2appimage/AppDir/"$APP_NAME".desktop
+        DESKTOP_CATEGORIES="$(grep '^Categories=' "$HOME"/.cache/deb2appimage/AppDir/"$APP_NAME".desktop)"
+        if [ -z "$DESKTOP_CATEGORIES" ]; then
+            echo "Categories=Utility;" >> "$HOME"/.cache/deb2appimage/AppDir/"$APP_NAME".desktop
+        elif [ ! "$(echo $DESKTOP_CATEGORIES | rev | cut -c1)" = ";" ]; then
+            sed -i 's%^Categories=.*%Categories=Utility;%g' "$HOME"/.cache/deb2appimage/AppDir/"$APP_NAME".desktop
+        fi
+    fi
     if [ "$USE_WRAPPER" = "true" ]; then
         curl -sL "https://raw.githubusercontent.com/simoniz0r/deb2appimage/master/resources/desktopintegration" -o "$HOME"/.cache/deb2appimage/AppDir"$BINARY_PATH".wrapper || d2aexit 3 "wrapper script"
         chmod a+x "$HOME"/.cache/deb2appimage/AppDir"$BINARY_PATH".wrapper
-    fi
-    cp "$HOME"/.cache/deb2appimage/AppDir"$DESKTOP_PATH" "$HOME"/.cache/deb2appimage/AppDir/"$APP_NAME".desktop
-    DESKTOP_CATEGORIES="$(grep '^Categories=' "$HOME"/.cache/deb2appimage/AppDir/"$APP_NAME".desktop)"
-    if [ -z "$DESKTOP_CATEGORIES" ]; then
-        echo "Categories=Utility;" >> "$HOME"/.cache/deb2appimage/AppDir/"$APP_NAME".desktop
-    elif [ ! "$(echo $DESKTOP_CATEGORIES | rev | cut -c1)" = ";" ]; then
-        sed -i 's%^Categories=.*%Categories=Utility;%g' "$HOME"/.cache/deb2appimage/AppDir/"$APP_NAME".desktop
     fi
     ICON_TYPE="$(echo $ICON_PATH | rev | cut -f1 -d'.' | rev)"
     ICON_SIZE=$(file "$HOME"/.cache/deb2appimage/AppDir${ICON_PATH} | cut -f2 -d',' | tr -d '[:blank:]' | cut -f1 -d'x')
@@ -259,9 +280,9 @@ EOL
 
 # function that runs postruncmd
 function postruncmd() {
-    POSTRUN_CMD="$(jq -r '.buildinfo[0].postrun' "$HOME"/.cache/deb2appimage/build.json | sed "s%~%$HOME%g")"
+    POSTRUN_CMD="$(jq -r '.buildinfo[0].postrun[]' "$HOME"/.cache/deb2appimage/build.json | tr '\n' ';' | rev | cut -f2- -d';' | rev | sed "s,;, \&\& ,g;s,~,$HOME,g")"
     if [ ! "$POSTRUN_CMD" = "null" ]; then
-        $POSTRUN_CMD || d2aexit 2 "'postrun' command failed"
+        bash -c "$POSTRUN_CMD" || d2aexit 2 "'postrun' failed!" "Failed to execute: $POSTRUN_CMD"
     fi
 }
 
@@ -281,7 +302,7 @@ function buildappimage() {
 }
 
 function d2ahelp() {
-printf '%s\n' "deb2appimage 0.0.2
+printf '%s\n' "deb2appimage 0.0.3
 Usage deb2appimage [argument] [input]
 
 deb2appimage is a tool for creating AppImages using deb packages. json files are used

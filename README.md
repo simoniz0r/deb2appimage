@@ -165,7 +165,7 @@ The path to the binary file of the application after being extracted from the de
 "desktoppath": "/usr/share/applications/parsec.desktop",
 ```
 
-The path to the desktop file of the application after being extracted from the deb package.  This file ***is required***, so if the package does not provide one (many applications that run via command line will not), one will need to be created manually and placed somewhere in `~/.cache/deb2appimage/AppDir` in a prerun script.
+The path to the desktop file of the application after being extracted from the deb package.  If a desktop file is not provided by the application, set this to `null` to have a generic desktop file created for use in the AppImage.
 
 **iconpath:**
 
@@ -173,7 +173,7 @@ The path to the desktop file of the application after being extracted from the d
 "iconpath": "/usr/share/icons/hicolor/256x256/apps/parsec.png",
 ```
 
-The path to the icon file of the application after being extracted fron the deb package.  This ***is also required***, so if one is not provided, it must be moved somewhere inside of `~/.cache/deb2appimage/AppDir` in a prerun script.
+The path to the icon file of the application after being extracted fron the deb package.  If no icon file is provided by the application, set this to `null` to have a generic icon downloaded for use in the AppImage.
 
 **usewrapper:**
 

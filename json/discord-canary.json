@@ -11,7 +11,7 @@
         ],
         "name": "discord-canary",
         "version": "0.0.45",
-        "deps": "libc++1,libnotify4,libatomic1,libxss1,libxtst6,libappindicator1,libnspr4,libnss3,libfreetype6,libpng12-0",
+        "deps": "libc++1,libnotify4,libatomic1,libxss1,libxtst6,libappindicator1,libnspr4,libnss3,libfreetype6,libpng12-0,libharfbuzz0b,libgraphite2-3,libpangoft2-1.0-0",
         "repoarch": "amd64",
         "distrorepo": "Debian",
         "repoversion": "jessie",

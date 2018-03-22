@@ -222,14 +222,6 @@ fi
 
 ICONFILE="$APPDIR/.DirIcon"
 
-# $XDG_DATA_DIRS contains the default paths /usr/local/share:/usr/share
-# desktop file has to be installed in an applications subdirectory
-# of one of the $XDG_DATA_DIRS components
-if [ -z "$XDG_DATA_DIRS" ] ; then
-  log "\$XDG_DATA_DIRS is missing. Please run ${THIS} from within an AppImage."
-  exit 0
-fi
-
 # Check if the desktop file is already there
 # and if so, whether it points to the same AppImage
 if [ -e "$DESTINATION_DIR_DESKTOP/$VENDORPREFIX-$DESKTOPFILE_NAME" ] ; then

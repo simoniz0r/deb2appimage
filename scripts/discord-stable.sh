@@ -28,6 +28,7 @@ case $1 in
         exit 0
         ;;
     *)
+        unset XDG_DATA_DIRS
         ./usr/bin/discord.wrapper &
         sleep 15
         if ! pgrep DiscordStable; then

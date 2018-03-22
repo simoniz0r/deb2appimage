@@ -28,6 +28,7 @@ case $1 in
         exit 0
         ;;
     *)
+        unset XDG_DATA_DIRS
         ./usr/bin/discord-canary.wrapper &
         sleep 15
         if ! pgrep DiscordCanary; then

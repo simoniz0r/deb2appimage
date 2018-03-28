@@ -45,5 +45,10 @@ if [ -z "$APPRUN_EXEC" ]; then
         exit 1
     fi
 fi
-cd "$RUNNING_DIR"
-exec "$APPRUN_EXEC" "$@"
+# cd "$RUNNING_DIR"
+case "$APPRUN_EXEC" in
+    .*)
+        APPRUN_EXEC="$(echo $APPRUN_EXEC | cut -c2-)"
+        ;;
+esac
+exec "$RUNNING_DIR"/"$APPRUN_EXEC" "$@"

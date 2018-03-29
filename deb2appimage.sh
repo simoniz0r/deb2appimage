@@ -215,11 +215,11 @@ function prepareappdir() {
         cat > "$HOME"/.cache/deb2appimage/AppDir/"$APP_NAME".desktop << EOL
 [Desktop Entry]
 Type=Application
-Name="$APP_NAME"
-Comment="$APP_NAME"
-Exec=."$BINARY_PATH"
+Name=$APP_NAME
+Comment=$APP_NAME
+Exec=.$BINARY_PATH
 Categories=Utility;
-Icon="$APP_NAME"
+Icon=$APP_NAME
 StartupNotify=false
 Terminal=true
 
@@ -234,7 +234,9 @@ EOL
         fi
     fi
     if [ "$USE_WRAPPER" = "true" ]; then
-        curl -sL "https://raw.githubusercontent.com/simoniz0r/deb2appimage/master/resources/desktopintegration" -o "$HOME"/.cache/deb2appimage/AppDir"$BINARY_PATH".wrapper || d2aexit 3 "wrapper script"
+        curl -sSL "https://raw.githubusercontent.com/simoniz0r/deb2appimage/master/resources/desktopintegration" -o "$HOME"/.cache/deb2appimage/AppDir"$BINARY_PATH".wrapper || d2aexit 3 "wrapper script"
+        curl -sSL "https://github.com/darealshinji/AppImageKit-dialog/releases/download/continuous/dialog-x86_64" -o "$HOME"/.cache/deb2appimage/AppDir/dialog || d2aexit 3 "wrapper script"
+        chmod a+x "$HOME"/.cache/deb2appimage/AppDir/dialog
         chmod a+x "$HOME"/.cache/deb2appimage/AppDir"$BINARY_PATH".wrapper
     fi
     ICON_TYPE="$(echo $ICON_PATH | rev | cut -f1 -d'.' | rev)"

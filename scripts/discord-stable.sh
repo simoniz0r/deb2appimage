@@ -15,7 +15,7 @@ case $1 in
         fi
         ;;
     --remove)
-        ./usr/bin/discord-stable.wrapper --remove-appimage-desktop-integration && echo "Removed .desktop file and icon for menu integration for Discord Stable." || echo "Failed to remove .desktop file and icon!"
+        ./usr/bin/discord.wrapper --remove-appimage-desktop-integration && echo "Removed .desktop file and icon for menu integration for Discord Stable." || echo "Failed to remove .desktop file and icon!"
         exit 0
         ;;
     --help)

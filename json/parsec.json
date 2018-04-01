@@ -2,7 +2,7 @@
     "buildinfo": [
     {
         "prerun": [
-            "curl -sL https://s3.amazonaws.com/parsec-build/package/parsec-linux.deb -o ~/.cache/deb2appimage/debs/parsec-linux.deb"
+            "curl -sL -o ~/.cache/deb2appimage/debs/parsec-linux.deb https://s3.amazonaws.com/parsec-build/package/parsec-linux.deb"
         ],
         "name": "parsec",
         "version": "linux",
@@ -10,12 +10,12 @@
         "repoarch": "amd64",
         "distrorepo": "Debian",
         "repoversion": "jessie-backports,jessie,jessie",
-        "binarypath": "/usr/bin/parsec",
+        "binarypath": "/usr/bin/parsecd",
         "desktoppath": "/usr/share/applications/parsec.desktop",
         "iconpath": "/usr/share/icons/hicolor/256x256/apps/parsec.png",
         "usewrapper": "true",
         "postrun": [
-            "sed -i s%^Terminal=.*%Terminal=true%g ~/.cache/deb2appimage/AppDir/parsec.desktop"
+            null
         ]
     }
     ],
@@ -30,7 +30,7 @@
         "setperllib": "false",
         "setgsettingsschemadir": "false",
         "setqtpluginpath": "false",
-        "exec": "/usr/bin/parsec.wrapper"
+        "exec": "/usr/bin/parsecd.wrapper"
     }
     ],
     "authors": [

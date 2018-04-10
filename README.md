@@ -97,7 +97,7 @@ Example JSON configuration for creating an AppImage of `parsec`:
 ],
 ```
 
-Here we download the deb package for parsec using `curl`.  Multiple commands may be used, but complex commands may fail and can to be put in bash script.  If no `prerun` command is needed (for example, if the source package for the AppImage is in debian's repos), then put `null` as the `prerun`.
+Here we download the deb package for parsec using `curl`.  Multiple commands may be used, but complex commands may fail and can to be put in bash script.  If a package for the target application is available in Debian's or Ubuntu's repos and no extra preperation is needed, simply put `null` as the prerun.
 
 **name:**
 
@@ -121,7 +121,7 @@ The version of the application.  If no version or `null` is entered, the current
 "deps": "libsndio6.1,expat,libexpat1",
 ```
 
-Dependencies as named on [Debian's package website](https://www.debian.org/distrib/packages) or [Ubuntu's package website](https://packages.ubuntu.com).  Packages must be separated by commas (`package1,package2,package3,package4`).
+Dependencies as named on [Debian's package website](https://www.debian.org/distrib/packages) or [Ubuntu's package website](https://packages.ubuntu.com).  Packages must be separated by commas (`package1,package2,package3,package4`).  If a package for the target application is available in Debian's or Ubuntu's repos, you can list the target applicaton's package name here to have it be downloaded and placed in the AppImage automatically.
 
 **repoarch:**
 

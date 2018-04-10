@@ -12,7 +12,7 @@
             "chmod a+x ~/.cache/deb2appimage/AppDir/usr/bin/ImageMagick"
         ],
         "name": "yadshot",
-        "version": "0.1.94",
+        "version": "0.1.95",
         "deps": "slop,libglew2.0,libicu57,libcairo2,libpango-1.0-0,libpangocairo-1.0-0,libsoup2.4-1,libwebkitgtk-3.0-0,libpng12-0,libjavascriptcoregtk-3.0-0,libgeoclue0,libicu52,libwebp5,libpangoft2-1.0-0",
         "repoarch": "amd64",
         "distrorepo": "Ubuntu",

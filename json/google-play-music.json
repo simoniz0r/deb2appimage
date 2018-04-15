@@ -1,0 +1,48 @@
+{
+    "buildinfo": [
+    {
+        "prerun": [
+            "curl -sSL -o ~/.cache/deb2appimage/debs/google-play-music.deb https://github.com/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-/releases/download/v4.5.0/google-play-music-desktop-player_4.5.0_amd64.deb"
+        ],
+        "name": "google-play-music",
+        "version": "4.5.0",
+        "deps": null,
+        "repoarch": null,
+        "distrorepo": null,
+        "repoversion": null,
+        "binarypath": "/usr/bin/google-play-music-desktop-player",
+        "desktoppath": "/usr/share/applications/google-play-music-desktop-player.desktop",
+        "iconpath": "/usr/share/pixmaps/google-play-music-desktop-player.png",
+        "usewrapper": "true",
+        "postrun": [
+            null
+        ]
+    }
+    ],
+    "apprunconf": [
+    {
+        "setpath": "true",
+        "setlibpath": "false",
+        "setpythonpath": "false",
+        "setpythonhome": "false",
+        "setpythondontwritebytecode": "false",
+        "setxdgdatadirs": "false",
+        "setperllib": "false",
+        "setgsettingsschemadir": "false",
+        "setqtpluginpath": "false",
+        "exec": "/usr/bin/google-play-music-desktop-player.wrapper"
+    }
+    ],
+    "authors": [
+    {
+        "type": "Author",
+        "author": "MarshalOfSound",
+        "url": "https://www.googleplaymusicdesktopplayer.com/"
+    },
+    {
+        "type": "AppImage Maintainer",
+        "author": "simonizor",
+        "url": "http://www.simonizor.net"
+    }
+    ]
+}

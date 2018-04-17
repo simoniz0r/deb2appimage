@@ -30,14 +30,10 @@ case $1 in
     *)
         unset XDG_DATA_DIRS
         ./usr/bin/discord-canary.wrapper &
-        sleep 15
-        if ! pgrep DiscordCanary; then
-            sleep 60
-        fi
-        CANARY_VER_DIR="$(dir -C -w 1 $HOME/.config/discordcanary | grep '^[0-9].[0-9].[0-9]')"
-        if [ -d "$HOME/.config/discordcanary/$CANARY_VER_DIR/modules/pending" ] && [ $(dir -C -w 1 $HOME/.config/discordcanary/$CANARY_VER_DIR/modules/pending | wc -l) -gt 0 ]; then
-            sleep 240
-        fi
+        sleep 30
+        while ps aux | grep -v 'grep' | grep -q 'DiscordCanary'; do
+            sleep 30
+        done
         exit 0
         ;;
 esac

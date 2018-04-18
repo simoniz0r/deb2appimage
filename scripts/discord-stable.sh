@@ -30,14 +30,10 @@ case $1 in
     *)
         unset XDG_DATA_DIRS
         ./usr/bin/discord.wrapper &
-        sleep 15
-        if ! pgrep DiscordStable; then
-            sleep 60
-        fi
-        STABLE_VER_DIR="$(dir -C -w 1 $HOME/.config/discord | grep '^[0-9].[0-9].[0-9]')"
-        if [ -d "$HOME/.config/discord/$STABLE_VER_DIR/modules/pending" ] && [ $(dir -C -w 1 $HOME/.config/discord/$STABLE_VER_DIR/modules/pending | wc -l) -gt 0 ]; then
-            sleep 240
-        fi
+        sleep 30
+        while ps aux | grep -v 'grep' | grep -q 'Discord'; do
+            sleep 30
+        done
         exit 0
         ;;
 esac

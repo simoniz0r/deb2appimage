@@ -36,8 +36,8 @@
     "authors": [
     {
         "type": "Author",
-        "author": "Mozilla",
-        "url": "https://mozilla.org"
+        "author": "jwilm",
+        "url": "https://github.com/jwilm/alacritty"
     },
     {
         "type": "AppImage Maintainer",

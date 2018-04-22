@@ -1,0 +1,48 @@
+{
+    "buildinfo": [
+    {
+        "prerun": [
+            "curl -sSL -o ~/.cache/deb2appimage/debs/vscode.deb 'https://go.microsoft.com/fwlink/?LinkID=760868'"
+        ],
+        "name": "vscode",
+        "version": "latest",
+        "deps": "libnotify4,libnss3,libxkbfile1,libgconf-2-4,libsecret-1-0",
+        "repoarch": "amd64",
+        "distrorepo": "Debian",
+        "repoversion": "jessie",
+        "binarypath": "/usr/share/code/code",
+        "desktoppath": "/usr/share/applications/code.desktop",
+        "iconpath": "/usr/share/code/resources/app/resources/linux/code.png",
+        "usewrapper": "true",
+        "postrun": [
+            null
+        ]
+    }
+    ],
+    "apprunconf": [
+    {
+        "setpath": "false",
+        "setlibpath": "true",
+        "setpythonpath": "false",
+        "setpythonhome": "false",
+        "setpythondontwritebytecode": "false",
+        "setxdgdatadirs": "false",
+        "setperllib": "false",
+        "setgsettingsschemadir": "false",
+        "setqtpluginpath": "false",
+        "exec": "/usr/share/code/code.wrapper"
+    }
+    ],
+    "authors": [
+    {
+        "type": "Author",
+        "author": "Microsoft",
+        "url": "https://code.visualstudio.com/"
+    },
+    {
+        "type": "AppImage Maintainer",
+        "author": "simonizor",
+        "url": "http://www.simonizor.net"
+    }
+    ]
+}

@@ -5,20 +5,20 @@
             "mkdir -p ~/.cache/deb2appimage/AppDir/usr/bin",
             "cp ~/github/yadshot/yadshot.sh ~/.cache/deb2appimage/AppDir/usr/bin/yadshot.sh",
             "cp ~/github/yadshot/yadshot.desktop ~/.cache/deb2appimage/AppDir/usr/bin/yadshot.desktop",
-            "cp ~/github/yadshot/yadshot.png ~/.cache/deb2appimage/AppDir/usr/bin/yadshot.png",
+            "cp ~/github/yadshot/yadshot.svg ~/.cache/deb2appimage/AppDir/usr/bin/yadshot.svg",
             "cp ~/bin/imagemagick ~/.cache/deb2appimage/AppDir/usr/bin/ImageMagick",
             "chmod a+x ~/.cache/deb2appimage/AppDir/usr/bin/yadshot.sh",
             "chmod a+x ~/.cache/deb2appimage/AppDir/usr/bin/ImageMagick"
         ],
         "name": "yadshot",
-        "version": "0.1.98",
+        "version": "0.2.00",
         "deps": "slop,libglew2.0,yad,libcairo2,libpango-1.0-0,libpangocairo-1.0-0,libgtk-3-0,xclip,libpng16-16,libpangoft2-1.0-0",
         "repoarch": "amd64",
         "distrorepo": "Debian",
         "repoversion": "stretch",
         "binarypath": "/usr/bin/yadshot.sh",
         "desktoppath": "/usr/bin/yadshot.desktop",
-        "iconpath": "/usr/bin/yadshot.png",
+        "iconpath": "/usr/bin/yadshot.svg",
         "usewrapper": "true",
         "postrun": [
             null

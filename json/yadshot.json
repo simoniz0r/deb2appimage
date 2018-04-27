@@ -11,7 +11,7 @@
             "chmod a+x ~/.cache/deb2appimage/AppDir/usr/bin/ImageMagick"
         ],
         "name": "yadshot",
-        "version": "0.2.00",
+        "version": "0.2.01",
         "deps": "slop,libglew2.0,yad,libcairo2,libpango-1.0-0,libpangocairo-1.0-0,libgtk-3-0,xclip,libpng16-16,libpangoft2-1.0-0",
         "repoarch": "amd64",
         "distrorepo": "Debian",

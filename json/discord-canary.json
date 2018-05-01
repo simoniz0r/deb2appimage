@@ -10,9 +10,9 @@
             "cp ~/github/deb2appimage/json/discord-canary2.json ~/.cache/deb2appimage/AppDir/usr/bin/discord-canary.json"
         ],
         "name": "discord-canary",
-        "version": "0.0.45",
-        "deps": "libc++1,libnotify4,libatomic1,libxss1,libxtst6,libappindicator1,libnspr4,libnss3,libfreetype6,libpng12-0,libharfbuzz0b,libgraphite2-3,libpangoft2-1.0-0,libpango-1.0-0,libpangocairo-1.0-0,libcairo2,libfontconfig1,expat,libexpat1",
-        "repoarch": "amd64",
+        "version": "0.0.46",
+        "deps": "libc++1,libnotify4,libatomic1,libxss1,libxtst6,libappindicator1,libnspr4,libnss3,libfreetype6,libpng12-0,libharfbuzz0b,libgraphite2-3,libpangoft2-1.0-0,libpango-1.0-0,libpangocairo-1.0-0,libcairo2,libfontconfig1,fontconfig-config,expat,libexpat1",
+        "repoarch": "amd64,amd64,amd64,amd64,amd64,amd64,amd64,amd64,amd64,amd64,amd64,amd64,amd64,amd64,amd64,amd64,amd64,all,amd64,amd64",
         "distrorepo": "Debian",
         "repoversion": "jessie",
         "binarypath": "/usr/bin/discord-canary",
@@ -27,7 +27,7 @@
     "apprunconf": [
     {
         "setpath": "false",
-        "setlibpath": "true",
+        "setlibpath": "false",
         "setpythonpath": "false",
         "setpythonhome": "false",
         "setpythondontwritebytecode": "false",

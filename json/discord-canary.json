@@ -27,7 +27,7 @@
     "apprunconf": [
     {
         "setpath": "false",
-        "setlibpath": "false",
+        "setlibpath": "true",
         "setpythonpath": "false",
         "setpythonhome": "false",
         "setpythondontwritebytecode": "false",

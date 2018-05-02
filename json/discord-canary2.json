@@ -17,7 +17,7 @@
         "repoversion": "jessie",
         "binarypath": "/usr/bin/discord-canary",
         "desktoppath": "/usr/share/discord-canary/discord-canary.desktop",
-        "iconpath": "/usr/share/discord-canary/discord-canary.png",
+        "iconpath": "/usr/share/discord-canary/discord.png",
         "usewrapper": "true",
         "postrun": [
             null

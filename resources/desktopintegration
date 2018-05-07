@@ -267,9 +267,9 @@ Exec="$APPIMAGE" --remove-appimage-desktop-integration
 EOF
 
   # Install the icon files for the application; TODO: scalable
-  ICON="${APPDIR}/${APP}.png"
-  ICON_SIZE=$(file ${APPDIR}/${APP}.png | cut -f2 -d',' | tr -d '[:blank:]' | cut -f1 -d'x')
-  xdg-icon-resource install --context apps --size ${ICON_SIZE} "${ICON}" "${RESOURCE_NAME}"
+  ICON="$(dir -Cw1 ${APPDIR} | grep -m1 '.png')"
+  ICON_SIZE=$(file ${APPDIR}/${ICON} | cut -f2 -d',' | tr -d '[:blank:]' | cut -f1 -d'x')
+  xdg-icon-resource install --context apps --size ${ICON_SIZE} "${APPDIR}"/"${ICON}" "${RESOURCE_NAME}"
 
   # Install mime type
   find "${APPDIR}/usr/share/mime/" -type f -name *xml -exec xdg-mime install $SYSTEM_WIDE --novendor {} \; 2>/dev/null || true

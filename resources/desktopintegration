@@ -268,7 +268,7 @@ EOF
 
   # Install the icon files for the application; TODO: scalable
   ICONS="${APPDIR}/${APP}.png"
-  ICON_SIZE=$(file ${APPDIR}/${APP}.png | cut -f2 -d',' | tr -d '[:blank:]')
+  ICON_SIZE=$(file ${APPDIR}/${APP}.png | cut -f2 -d',' | tr -d '[:blank:]' | cut -f1 -d'x')
   xdg-icon-resource install --context apps --size ${ICON_SIZE} "${ICON}" "${RESOURCE_NAME}"
 
   # Install mime type

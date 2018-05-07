@@ -28,7 +28,6 @@ case $1 in
         exit 0
         ;;
     *)
-        unset XDG_DATA_DIRS
         ./usr/bin/discord.wrapper &
         sleep 30
         while ps aux | grep -v 'grep' | grep -q 'Discord'; do

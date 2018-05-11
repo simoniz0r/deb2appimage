@@ -23,15 +23,21 @@ function updatediscordcanary() {
             fi
             if [ -w "$DEST_DIR" ]; then
                 mkdir -p "$DEST_DIR"
+                fltk-dialog --progress --center --pulsate --no-cancel --no-escape --text="Downloading Discord Canary" &
+                PROGRESS_PID=$!
                 curl -sSL -o "$DEST_DIR"/discord-canary "$GITHUB_DL_URL" || { fltk-dialog --warning --center --text="Failed to download Discord Canary!\nPlease try again."; exit 1; }
                 chmod +x "$DEST_DIR"/discord-canary
+                kill -SIGTERM -f $PROGRESS_PID
             else
                 PASSWORD="$(fltk-dialog --password --center --text="Enter your password to download Discord Canary to $DEST_DIR")"
                 echo "$PASSWORD" | sudo -S mkdir -p "$DEST_DIR" || { fltk-dialog --warning --center --text="Failed to create $DEST_DIR!\nPlease try again."; exit 1; }
+                fltk-dialog --progress --center --pulsate --no-cancel --no-escape --text="Downloading Discord Canary" &
+                PROGRESS_PID=$!
                 curl -sSL -o /tmp/discord-canary-"$NEW_APP_VERSION"-x86_64.AppImage "$GITHUB_DL_URL" || { fltk-dialog --warning --center --text="Failed to download Discord Canary!\nPlease try again."; exit 1; }
                 chmod +x /tmp/discord-canary-"$NEW_APP_VERSION"-x86_64.AppImage 
                 echo "$PASSWORD" | sudo -S mv /tmp/discord-canary-"$NEW_APP_VERSION"-x86_64.AppImage "$DEST_DIR"/discord-canary || \
                 { fltk-dialog --warning --center --text="Failed to move Discord Canary to $DEST_DIR!\nPlease try again."; rm -f /tmp/discord-canary-"$APP_VERSION"-x86_64.AppImage; exit 1; }
+                kill -SIGTERM -f $PROGRESS_PID
             fi
             fltk-dialog --message --center --text="Discord Canary $NEW_APP_VERSION has been downloaded to $DEST_DIR\nLaunching Discord Canary now..."
             "$DEST_DIR"/discord-canary &
@@ -60,15 +66,18 @@ function updatediscordcanary() {
             cp "$RUNNING_DIR"/fltk-dialog "$HOME"/.cache/deb2appimage/fltk-dialog
             cp "$RUNNING_DIR"/discord-canary.sh "$HOME"/.cache/deb2appimage/discord-canary.sh
             cp "$RUNNING_DIR"/discord-canary.json "$HOME"/.cache/deb2appimage/discord-canary.json
+            fltk-dialog --progress --center --pulsate --no-cancel --no-escape --text="Downloading Discord Canary" &
+            PROGRESS_PID=$!
             echo "$(sed "s%\"version\": \"0..*%\"version\": \"$NEW_APP_VERSION\",%g" "$HOME"/.cache/deb2appimage/discord-canary.json)" > "$HOME"/.cache/deb2appimage/discord-canary.json
             deb2appimage -j "$RUNNING_DIR"/discord-canary.json -o "$HOME"/Downloads || { fltk-dialog --warning --center --text="Failed to build Discord Canary AppImage\nPlease create an issue here:\nhttps://github.com/simoniz0r/Discord-Canary-AppImage/issues/new"; exit 1; }
+            kill -SIGTERM -f $PROGRESS_PID
             if [ -w "$DEST_DIR" ]; then
                 mv "$HOME"/Downloads/discord-canary-"$APP_VERSION"-x86_64.AppImage "$DEST_DIR"/discord-canary
             else
                 echo "$PASSWORD" | sudo -S mv "$HOME"/Downloads/discord-canary-"$NEW_APP_VERSION"-x86_64.AppImage "$DEST_DIR"/discord-canary || \
                 { fltk-dialog --warning --center --text="Failed to move Discord Canary to $DEST_DIR!\nPlease try again."; rm -f "$HOME"/Downloads/discord-canary-"$APP_VERSION"-x86_64.AppImage; exit 1; }
             fi
-            fltk-dialog --message --center --text="Discord Canary $NEW_APP_VERSION has been downloaded to $DEST_DIR\nLaunching Discord Canary now..."
+            fltk-dialog --message --center --text="Discord Canary AppImage $NEW_APP_VERSION has been built to $DEST_DIR\nLaunching Discord Canary now..."
             "$DEST_DIR"/discord-canary &
             exit 0
         fi

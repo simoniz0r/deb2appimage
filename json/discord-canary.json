@@ -7,6 +7,7 @@
             "chmod a+x ~/.cache/deb2appimage/AppDir/usr/bin/discord-canary.sh",
             "curl -sL -o ~/.cache/deb2appimage/debs/discord-canary.deb 'https://discordapp.com/api/download/canary?platform=linux&format=deb'",
             "cp ~/github/all-releases/deb2appimage-0.0.3-x86_64.AppImage ~/.cache/deb2appimage/AppDir/usr/bin/deb2appimage",
+            "cp ~/bin/fltk-dialog ~/.cache/deb2appimage/AppDir/usr/bin/deb2appimage",
             "cp ~/github/deb2appimage/json/discord-canary2.json ~/.cache/deb2appimage/AppDir/usr/bin/discord-canary.json"
         ],
         "name": "discord-canary",
@@ -26,7 +27,7 @@
     ],
     "apprunconf": [
     {
-        "setpath": "false",
+        "setpath": "true",
         "setlibpath": "true",
         "setpythonpath": "false",
         "setpythonhome": "false",

@@ -9,7 +9,7 @@
             "chmod a+x ~/.cache/deb2appimage/AppDir/usr/bin/spm"
         ],
         "name": "spm",
-        "version": "0.2.03",
+        "version": "0.2.04",
         "deps": "jq,libjq1,libonig4",
         "repoarch": "amd64",
         "distrorepo": "Debian",

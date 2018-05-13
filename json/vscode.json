@@ -6,7 +6,7 @@
         ],
         "name": "vscode",
         "version": "latest",
-        "deps": "libnotify4,libnss3,libxkbfile1,libgconf-2-4,libsecret-1-0",
+        "deps": "libnotify4,libnss3,libxkbfile1,libgconf-2-4",
         "repoarch": "amd64",
         "distrorepo": "Ubuntu",
         "repoversion": "trusty",

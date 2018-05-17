@@ -5,14 +5,15 @@
             "mkdir -p ~/.cache/deb2appimage/AppDir/usr/bin",
             "cp ~/.cache/deb2appimage/discord-stable.sh ~/.cache/deb2appimage/AppDir/usr/bin/discord-stable.sh",
             "chmod a+x ~/.cache/deb2appimage/AppDir/usr/bin/discord-stable.sh",
-            "curl -sL -o ~/.cache/deb2appimage/debs/discord-stable.deb 'https://discordapp.com/api/download/stable?platform=linux&format=deb'",
+            "curl -sL -o ~/.cache/deb2appimage/debs/discord.deb 'https://discordapp.com/api/download?platform=linux&format=deb'",
             "mv ~/.cache/deb2appimage/deb2appimage.AppImage ~/.cache/deb2appimage/AppDir/usr/bin/deb2appimage",
+            "mv ~/.cache/deb2appimage/fltk-dialog ~/.cache/deb2appimage/AppDir/usr/bin/fltk-dialog",
             "cp ~/.cache/deb2appimage/discord-stable.json ~/.cache/deb2appimage/AppDir/usr/bin/discord-stable.json"
         ],
-        "name": "discord-stable",
+        "name": "discord",
         "version": "0.0.5",
-        "deps": "libc++1,libnotify4,libatomic1,libxss1,libxtst6,libappindicator1,libnspr4,libnss3,libgconf-2-4,libfreetype6,libpng12-0,libharfbuzz0b,libgraphite2-3,libpangoft2-1.0-0,libpango-1.0-0,libpangocairo-1.0-0,libcairo2,libfontconfig1,fontconfig-config,expat,libexpat1",
-        "repoarch": "amd64,amd64,amd64,amd64,amd64,amd64,amd64,amd64,amd64,amd64,amd64,amd64,amd64,amd64,amd64,amd64,amd64,amd64,all,amd64,amd64",
+        "deps": "libc++1,libnotify4,libatomic1,libxss1,libxtst6,libappindicator1,libnspr4,libnss3,libgconf-2-4",
+        "repoarch": "amd64",
         "distrorepo": "Ubuntu",
         "repoversion": "trusty",
         "binarypath": "/usr/bin/discord",
@@ -26,7 +27,7 @@
     ],
     "apprunconf": [
     {
-        "setpath": "false",
+        "setpath": "true",
         "setlibpath": "true",
         "setpythonpath": "false",
         "setpythonhome": "false",

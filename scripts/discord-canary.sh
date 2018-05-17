@@ -102,7 +102,11 @@ case $1 in
         exit 0
         ;;
     *)
-        updatediscordcanary
+        if ! type curl > /dev/null 2>&1; then
+            fltk-dialog --message --center --text="Please install 'curl' to enable update checks"
+        else
+            updatediscordcanary
+        fi
         ./usr/bin/discord-canary.wrapper &
         sleep 30
         while ps aux | grep -v 'grep' | grep -q 'DiscordCanary'; do

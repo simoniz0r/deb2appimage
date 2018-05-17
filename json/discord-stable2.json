@@ -10,7 +10,7 @@
             "mv ~/.cache/deb2appimage/fltk-dialog ~/.cache/deb2appimage/AppDir/usr/bin/fltk-dialog",
             "cp ~/.cache/deb2appimage/discord-stable.json ~/.cache/deb2appimage/AppDir/usr/bin/discord-stable.json"
         ],
-        "name": "discord",
+        "name": "discord-stable",
         "version": "0.0.5",
         "deps": "libc++1,libnotify4,libatomic1,libxss1,libxtst6,libappindicator1,libnspr4,libnss3,libgconf-2-4",
         "repoarch": "amd64",

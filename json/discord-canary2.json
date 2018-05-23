@@ -11,7 +11,7 @@
             "cp ~/.cache/deb2appimage/discord-canary.json ~/.cache/deb2appimage/AppDir/usr/bin/discord-canary.json"
         ],
         "name": "discord-canary",
-        "version": "0.0.50",
+        "version": "0.0.51",
         "deps": "libc++1,libnotify4,libatomic1,libxss1,libxtst6,libappindicator1,libnspr4,libnss3,libgconf-2-4",
         "repoarch": "amd64",
         "distrorepo": "Ubuntu",

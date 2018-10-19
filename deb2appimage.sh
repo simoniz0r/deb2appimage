@@ -188,7 +188,7 @@ function debextract () {
 
 # function that runs a for loop to find all downloaded debs and extract them
 function finddownloadeddebs() {
-    for debpkg in $(dir -C -w 1 "$HOME"/.cache/deb2appimage/debs); do
+    for debpkg in $(ls -C -w 1 "$HOME"/.cache/deb2appimage/debs); do
         debextract "$debpkg" || d2aexit 5 "$debpkg"
     done
     rm -rf "$HOME"/.cache/deb2appimage/*/debs

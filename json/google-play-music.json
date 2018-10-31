@@ -2,10 +2,10 @@
     "buildinfo": [
     {
         "prerun": [
-            "curl -sSL -o ~/.cache/deb2appimage/debs/google-play-music.deb https://github.com/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-/releases/download/v4.5.0/google-play-music-desktop-player_4.5.0_amd64.deb"
+            "curl -sSL -o ~/.cache/deb2appimage/debs/google-play-music.deb https://github.com/MarshallOfSound/Google-Play-Music-Desktop-Player-UNOFFICIAL-/releases/download/v4.6.1/google-play-music-desktop-player_4.6.1_amd64.deb"
         ],
         "name": "google-play-music",
-        "version": "4.5.0",
+        "version": "4.6.1",
         "deps": null,
         "repoarch": null,
         "distrorepo": null,

@@ -1,0 +1,49 @@
+{
+    "buildinfo": [
+    {
+        "prerun": [
+            "mkdir -p ~/.cache/deb2appimage/AppDir/",
+            "cp -r /run/media/simonizor/USBHDD/nativefier/halloween-doodle-linux-x64/* ~/.cache/deb2appimage/AppDir/"
+        ],
+        "name": "halloween-doodle",
+        "version": "0.0.10",
+        "deps": null,
+        "repoarch": null,
+        "distrorepo": null,
+        "repoversion": null,
+        "binarypath": "/usr/bin/halloween-doodle",
+        "desktoppath": null,
+        "iconpath": "/halloween-doodle.png",
+        "usewrapper": "true",
+        "postrun": [
+            null
+        ]
+    }
+    ],
+    "apprunconf": [
+    {
+        "setpath": "true",
+        "setlibpath": "true",
+        "setpythonpath": "false",
+        "setpythonhome": "false",
+        "setpythondontwritebytecode": "false",
+        "setxdgdatadirs": "false",
+        "setperllib": "false",
+        "setgsettingsschemadir": "false",
+        "setqtpluginpath": "false",
+        "exec": "/usr/bin/halloween-doodle.wrapper"
+    }
+    ],
+    "authors": [
+    {
+        "type": "Author",
+        "author": "simonizor",
+        "url": "http://www.simonizor.net"
+    },
+    {
+        "type": "AppImage Maintainer",
+        "author": "simonizor",
+        "url": "http://www.simonizor.net"
+    }
+    ]
+}

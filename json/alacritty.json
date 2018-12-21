@@ -2,16 +2,16 @@
     "buildinfo": [
     {
         "prerun": [
-            "curl -sSL -o ~/.cache/deb2appimage/debs/alacritty.deb 'https://github.com/avivace/deb-builds/releases/download/jan18/alacritty_0.1.0_amd64.deb'"
+            "curl -sSL -o ~/.cache/deb2appimage/debs/alacritty.deb 'https://github.com/jwilm/alacritty/releases/download/v0.2.4/Alacritty-v0.2.4_amd64.deb'"
         ],
         "name": "alacritty",
-        "version": "0.1.0",
+        "version": "0.2.4",
         "deps": "libexpat1,zlib1g,libpng16-16",
         "repoarch": "amd64",
         "distrorepo": "Debian",
         "repoversion": "stretch",
         "binarypath": "/usr/bin/alacritty",
-        "desktoppath": null,
+        "desktoppath": "/usr/share/applications/alacritty.desktop",
         "iconpath": null,
         "usewrapper": "true",
         "postrun": [

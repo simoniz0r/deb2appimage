@@ -11,7 +11,7 @@
             "cp ~/github/deb2appimage/json/discord-ptb2.json ~/.cache/deb2appimage/AppDir/usr/bin/discord-ptb.json"
         ],
         "name": "discord-ptb",
-        "version": "0.0.9",
+        "version": "0.0.10",
         "deps": "libc++1,libnotify4,libatomic1,libxss1,libxtst6,libappindicator1,libnspr4,libnss3,libgconf-2-4",
         "repoarch": "amd64",
         "distrorepo": "Ubuntu",

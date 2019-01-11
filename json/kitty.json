@@ -2,13 +2,13 @@
     "buildinfo": [
     {
         "prerun": [
-            "curl -sL -o ~/.cache/deb2appimage/kitty.txz https://github.com/kovidgoyal/kitty/releases/download/v0.13.1/kitty-0.13.1-x86_64.txz",
+            "curl -sL -o ~/.cache/deb2appimage/kitty.txz https://github.com/kovidgoyal/kitty/releases/download/v0.13.2/kitty-0.13.2-x86_64.txz",
             "mkdir -p ~/.cache/deb2appimage/AppDir/usr",
             "tar -xf ~/.cache/deb2appimage/kitty.txz -C ~/.cache/deb2appimage/AppDir/usr",
             "rm -f ~/.cache/deb2appimage/kitty.txz"
         ],
         "name": "kitty",
-        "version": "0.13.1",
+        "version": "0.13.2",
         "deps": null,
         "repoarch": null,
         "distrorepo": null,

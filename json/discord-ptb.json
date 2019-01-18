@@ -9,7 +9,7 @@
             "curl -sL -o ~/.cache/deb2appimage/debs/discord-ptb.deb 'https://discordapp.com/api/download/ptb?platform=linux&format=deb'",
             "curl -sL -o ~/.cache/deb2appimage/AppDir/usr/bin/deb2appimage 'https://github.com/simoniz0r/deb2appimage/releases/download/v0.0.3/deb2appimage-0.0.3-x86_64.AppImage'",
             "curl -sL -o ~/.cache/deb2appimage/AppDir/usr/bin/fltk-dialog 'https://github.com/darealshinji/fltk-dialog/releases/download/continuous/fltk-dialog'",
-            "curl -sSL -I -X GET 'https://discordapp.com/api/download/ptb?platform=linux&format=deb' | grep -im1 '^location:' | rev | cut -f1 -d'-' | cut -f3- -d'.' | rev > ~/.cache/deb2appimage/AppDir/usr/bin/discord-ptb-version"
+            "curl -sSL -I -X GET 'https://discordapp.com/api/download/ptb?platform=linux&format=tar.gz' | grep -im1 '^location:' | rev | cut -f1 -d'-' | cut -f3- -d'.' | rev > ~/.cache/deb2appimage/AppDir/usr/bin/discord-ptb-version"
         ],
         "name": "discord-ptb",
         "version": "latest",

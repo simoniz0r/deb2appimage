@@ -8,7 +8,7 @@ function updatediscordptb() {
     NEW_APP_VERSION="$(curl -sSL -I -X GET "https://discordapp.com/api/download/ptb?platform=linux&format=tar.gz" | grep -im1 '^location:' | rev | cut -f1 -d'-' | cut -f3- -d'.' | rev)"
     if [[ ! -z "$NEW_APP_VERSION" ]] && [[ ! "$APP_VERSION" == "$NEW_APP_VERSION" ]]; then
         GITHUB_DL_URL="https://github.com/simoniz0r/Discord-PTB-AppImage/releases/download/v$NEW_APP_VERSION/discord-ptb-$NEW_APP_VERSION-x86_64.AppImage"
-        if curl -sSL -I -X GET "$GITHUB_DL_URL"; then
+        if [[ ! "$(curl -sSL -I -X GET "$GITHUB_DL_URL" | head -n 1)" == "HTTP/1.1 404 Not Found" ]]; then
             fltk-dialog --question --center --text="New Discord PTB version has been released!\nDownload version $NEW_APP_VERSION now?"
             case $? in
                 1)

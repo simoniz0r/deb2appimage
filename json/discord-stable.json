@@ -1,18 +1,19 @@
 {
     "buildinfo": [
     {
-        "prerun": [ 
+        "prerun": [
             "mkdir -p ~/.cache/deb2appimage/AppDir/usr/bin",
-            "cp ~/github/deb2appimage/scripts/discord-stable.sh ~/.cache/deb2appimage/AppDir/usr/bin/discord-stable.sh",
+            "curl -sL -o ~/.cache/deb2appimage/AppDir/usr/bin/discord-stable.sh 'https://raw.githubusercontent.com/simoniz0r/deb2appimage/master/scripts/discord-stable.sh'",
             "chmod a+x ~/.cache/deb2appimage/AppDir/usr/bin/discord-stable.sh",
+            "curl -sL -o ~/.cache/deb2appimage/AppDir/usr/bin/discord-stable.json 'https://raw.githubusercontent.com/simoniz0r/deb2appimage/master/json/discord-stable.json'",
             "curl -sL -o ~/.cache/deb2appimage/debs/discord.deb 'https://discordapp.com/api/download?platform=linux&format=deb'",
-            "cp ~/github/all-releases/deb2appimage-0.0.3-x86_64.AppImage ~/.cache/deb2appimage/AppDir/usr/bin/deb2appimage",
-            "cp ~/bin/fltk-dialog ~/.cache/deb2appimage/AppDir/usr/bin/fltk-dialog",
-            "cp ~/github/deb2appimage/json/discord-stable2.json ~/.cache/deb2appimage/AppDir/usr/bin/discord-stable.json"
+            "curl -sL -o ~/.cache/deb2appimage/AppDir/usr/bin/deb2appimage 'https://github.com/simoniz0r/deb2appimage/releases/download/v0.0.3/deb2appimage-0.0.3-x86_64.AppImage'",
+            "curl -sL -o ~/.cache/deb2appimage/AppDir/usr/bin/fltk-dialog 'https://github.com/darealshinji/fltk-dialog/releases/download/continuous/fltk-dialog'",
+            "curl -sSL -I -X GET 'https://discordapp.com/api/download?platform=linux&format=deb' | grep -im1 '^location:' | rev | cut -f1 -d'-' | cut -f3- -d'.' | rev > ~/.cache/deb2appimage/AppDir/usr/bin/discord-version"
         ],
-        "name": "discord-stable",
-        "version": "0.0.5",
-        "deps": "libc++1,libnotify4,libatomic1,libxss1,libxtst6,libappindicator1,libnspr4,libnss3,libgconf-2-4",
+        "name": "discord",
+        "version": "latest",
+        "deps": "libc++1,libc++abi1,libnotify4,libatomic1,libxss1,libxtst6,libappindicator1,libnspr4,libnss3,libgconf-2-4",
         "repoarch": "amd64",
         "distrorepo": "Ubuntu",
         "repoversion": "trusty",

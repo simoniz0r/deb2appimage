@@ -2,18 +2,20 @@
     "buildinfo": [
     {
         "prerun": [
-            "curl -sL -o ~/.cache/deb2appimage/kitty.txz https://github.com/kovidgoyal/kitty/releases/download/v0.13.2/kitty-0.13.2-x86_64.txz",
+            "curl -sL -o ~/.cache/deb2appimage/kitty.txz https://github.com/kovidgoyal/kitty/releases/download/v0.13.3/kitty-0.13.3-x86_64.txz",
             "mkdir -p ~/.cache/deb2appimage/AppDir/usr",
             "tar -xf ~/.cache/deb2appimage/kitty.txz -C ~/.cache/deb2appimage/AppDir/usr",
-            "rm -f ~/.cache/deb2appimage/kitty.txz"
+            "rm -f ~/.cache/deb2appimage/kitty.txz",
+            "echo 'kitty -d=$HOME $@' > ~/.cache/deb2appimage/AppDir/usr/bin/kitty.sh",
+            "chmod +x ~/.cache/deb2appimage/AppDir/usr/bin/kitty.sh"
         ],
         "name": "kitty",
-        "version": "0.13.2",
+        "version": "0.13.3",
         "deps": null,
         "repoarch": null,
         "distrorepo": null,
         "repoversion": null,
-        "binarypath": "/usr/bin/kitty",
+        "binarypath": "/usr/bin/kitty.sh",
         "desktoppath": "/usr/share/applications/kitty.desktop",
         "iconpath": "/usr/share/icons/hicolor/256x256/apps/kitty.png",
         "usewrapper": "true",
@@ -33,7 +35,7 @@
         "setperllib": "false",
         "setgsettingsschemadir": "false",
         "setqtpluginpath": "false",
-        "exec": "/usr/bin/kitty.wrapper"
+        "exec": "/usr/bin/kitty.sh.wrapper"
     }
     ],
     "authors": [

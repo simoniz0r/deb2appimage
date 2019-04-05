@@ -221,7 +221,7 @@ Exec=.$BINARY_PATH
 Categories=Utility;
 Icon=$APP_NAME
 StartupNotify=false
-Terminal=true
+Terminal=false
 
 EOL
     else

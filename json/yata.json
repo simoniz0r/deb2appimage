@@ -4,7 +4,7 @@
         "prerun": [
             "mkdir -p ~/.cache/deb2appimage/AppDir",
             "cd ~/.cache/deb2appimage/AppDir",
-            "nativefier https://yata.now.sh --name yata --internal-urls '.*'"
+            "nativefier https://yata.now.sh --name yata --internal-urls '.*' --file-download-options '{\"saveAs\": true}'"
         ],
         "name": "yata",
         "version": "0.0.1",

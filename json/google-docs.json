@@ -4,7 +4,7 @@
         "prerun": [
             "mkdir -p ~/.cache/deb2appimage/AppDir",
             "cd ~/.cache/deb2appimage/AppDir",
-            "nativefier https://docs.google.com --name google-docs --file-download-options '{\"saveAs\": true}' --internal-urls '.*'"
+            "nativefier https://docs.google.com --name google-docs --file-download-options '{\"saveAs\": true}' --internal-urls '.*' --inject /run/media/simonizor/USBHDD/nativefier/google-clean-dark.js"
         ],
         "name": "google-docs",
         "version": "0.0.1",

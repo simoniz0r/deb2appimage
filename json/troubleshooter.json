@@ -1,0 +1,49 @@
+{
+    "buildinfo": [
+    {
+        "prerun": [
+            "mkdir -p ~/.cache/deb2appimage/AppDir/usr/bin",
+            "curl -sSL -o ~/.cache/deb2appimage/AppDir/usr/bin/troubleshooter 'https://raw.githubusercontent.com/simoniz0r/troubleshooter/master/troubleshooter.sh'"
+        ],
+        "name": "troubleshooter",
+        "version": "0.0.5",
+        "deps": "inxi, netcat",
+        "repoarch": "all",
+        "distrorepo": "Debian",
+        "repoversion": "stretch",
+        "binarypath": "/usr/bin/troubleshooter",
+        "desktoppath": null,
+        "iconpath": null,
+        "usewrapper": "false",
+        "postrun": [
+            null
+        ]
+    }
+    ],
+    "apprunconf": [
+    {
+        "setpath": "true",
+        "setlibpath": "false",
+        "setpythonpath": "false",
+        "setpythonhome": "false",
+        "setpythondontwritebytecode": "false",
+        "setxdgdatadirs": "false",
+        "setperllib": "false",
+        "setgsettingsschemadir": "false",
+        "setqtpluginpath": "false",
+        "exec": "/usr/bin/troubleshooter"
+    }
+    ],
+    "authors": [
+    {
+        "type": "Author",
+        "author": "simonizor",
+        "url": "https://github.com/simoniz0r/troubleshooter"
+    },
+    {
+        "type": "AppImage Maintainer",
+        "author": "simonizor",
+        "url": "http://www.simonizor.net"
+    }
+    ]
+}

@@ -304,7 +304,7 @@ function buildappimage() {
 }
 
 function d2ahelp() {
-printf '%s\n' "deb2appimage 0.0.3
+printf '%s\n' "deb2appimage 0.0.4
 Usage deb2appimage [argument] [input]
 
 deb2appimage is a tool for creating AppImages using deb packages. json files are used

@@ -4,7 +4,7 @@
         "prerun": [
             "mkdir -p ~/.cache/deb2appimage/AppDir",
             "cd ~/.cache/deb2appimage/AppDir",
-            "nativefier https://blargbot.xyz/tags/editor --name bbtag-editor"
+            "nativefier https://blargbot.xyz/tags/editor --name bbtag-editor -e 4.1.4"
         ],
         "name": "bbtag-editor",
         "version": "0.0.1",

@@ -2,18 +2,19 @@
     "buildinfo": [
     {
         "prerun": [
-            "mkdir -p ~/.cache/deb2appimage/AppDir/usr/bin",
-            "cp -r ~/github/twitch-wrapper/twitch-linux-x64/* ~/.cache/deb2appimage/AppDir/usr/bin/"
+            "mkdir -p ~/.cache/deb2appimage/AppDir",
+            "cd ~/.cache/deb2appimage/AppDir",
+            "nativefier https://twitch.tv/directory/following --name twitch-electron -e 4.1.4 --inject /run/media/simonizor/USBHDD/nativefier/ffz.js"
         ],
-        "name": "twitch-wrapper",
-        "version": "0.0.20",
+        "name": "twitch-electron",
+        "version": "0.0.1",
         "deps": null,
         "repoarch": null,
         "distrorepo": null,
         "repoversion": null,
-        "binarypath": "/usr/bin/twitch",
-        "desktoppath": "/usr/bin/resources/app/twitch.desktop",
-        "iconpath": "/usr/bin/resources/app/icon.png",
+        "binarypath": "/twitch-electron-linux-x64/twitch-electron",
+        "desktoppath": null,
+        "iconpath": "/twitch-electron-linux-x64/resources/app/icon.png",
         "usewrapper": "true",
         "postrun": [
             null
@@ -22,8 +23,8 @@
     ],
     "apprunconf": [
     {
-        "setpath": "true",
-        "setlibpath": "true",
+        "setpath": "false",
+        "setlibpath": "false",
         "setpythonpath": "false",
         "setpythonhome": "false",
         "setpythondontwritebytecode": "false",
@@ -31,14 +32,14 @@
         "setperllib": "false",
         "setgsettingsschemadir": "false",
         "setqtpluginpath": "false",
-        "exec": "/usr/bin/twitch.wrapper"
+        "exec": "/twitch-electron-linux-x64/twitch-electron.wrapper"
     }
     ],
     "authors": [
     {
         "type": "Author",
-        "author": "simonizor",
-        "url": "http://www.simonizor.net"
+        "author": "Twitch",
+        "url": "https://twitch.tv"
     },
     {
         "type": "AppImage Maintainer",

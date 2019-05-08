@@ -2,9 +2,11 @@
     "buildinfo": [
     {
         "prerun": [
-            "mkdir -p ~/.cache/deb2appimage/AppDir",
+            "mkdir -p ~/.cache/deb2appimage/AppDir/usr/bin",
+            "cp ~/github/yata/yata-loader  ~/.cache/deb2appimage/AppDir/usr/bin/yata-loader",
+            "chmod +x ~/.cache/deb2appimage/AppDir/usr/bin/yata-loader",
             "cd ~/.cache/deb2appimage/AppDir",
-            "nativefier https://yata.now.sh --name yata --internal-urls '.*' --file-download-options '{\"saveAs\": true}'"
+            "nativefier https://yata.now.sh --name yata --internal-urls '.*' --file-download-options '{\"saveAs\": true}' -e 5.0.0 --inject ~/github/yata/yata.js"
         ],
         "name": "yata",
         "version": "0.0.1",
@@ -23,7 +25,7 @@
     ],
     "apprunconf": [
     {
-        "setpath": "false",
+        "setpath": "true",
         "setlibpath": "false",
         "setpythonpath": "false",
         "setpythonhome": "false",

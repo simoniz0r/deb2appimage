@@ -13,7 +13,7 @@
         ],
         "name": "discord-ptb",
         "version": "latest",
-        "deps": "libc++1,libc++abi1,libnotify4,libatomic1,libxss1,libxtst6,libappindicator1,libnspr4,libnss3,libgconf-2-4",
+        "deps": "libnotify4,libatomic1,libxss1,libxtst6,libappindicator1,libnspr4,libnss3,libgconf-2-4",
         "repoarch": "amd64",
         "distrorepo": "Debian",
         "repoversion": "jessie",

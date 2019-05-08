@@ -11,7 +11,7 @@
         ],
         "name": "deb2appimage",
         "version": "0.0.4",
-        "deps": "binutils,jq,libjq1,libonig2",
+        "deps": "binutils,jq,libjq1,libonig4",
         "repoarch": "amd64",
         "distrorepo": "Debian",
         "repoversion": "stretch",

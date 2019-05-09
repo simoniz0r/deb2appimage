@@ -10,7 +10,7 @@
             "cp ~/github/deb2appimage/deb2appimage.desktop ~/.cache/deb2appimage/AppDir/usr/share/deb2appimage/deb2appimage.desktop"
         ],
         "name": "deb2appimage",
-        "version": "0.0.4",
+        "version": "0.0.5",
         "deps": "binutils,jq,libjq1,libonig4",
         "repoarch": "amd64",
         "distrorepo": "Debian",

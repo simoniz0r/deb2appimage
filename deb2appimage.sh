@@ -217,7 +217,7 @@ function prepareappdir() {
 Type=Application
 Name=$APP_NAME
 Comment=$APP_NAME
-Exec=.$BINARY_PATH
+Exec=$BINARY_PATH
 Categories=Utility;
 Icon=$APP_NAME
 StartupNotify=false
@@ -260,11 +260,6 @@ APPRUN_SET_XDG="$(jq -r '.apprunconf[0].setxdgdatadirs' "$HOME"/.cache/deb2appim
 APPRUN_SET_PERL="$(jq -r '.apprunconf[0].setperllib' "$HOME"/.cache/deb2appimage/build.json | tr '[:lower:]' '[:upper:]')"
 APPRUN_SET_QT="$(jq -r '.apprunconf[0].setqtpluginpath' "$HOME"/.cache/deb2appimage/build.json | tr '[:lower:]' '[:upper:]')"
 APPRUN_EXEC="$(jq -r '.apprunconf[0].exec' "$HOME"/.cache/deb2appimage/build.json)"
-case $APPRUN_EXEC in
-    /*)
-        APPRUN_EXEC=".$APPRUN_EXEC"
-        ;;
-esac
 cat >"$HOME"/.cache/deb2appimage/AppDir/AppRun.conf << EOL
 APPRUN_SET_PATH="$APPRUN_SET_PATH"
 APPRUN_SET_LD_LIBRARY_PATH="$APPRUN_SET_LIBPATH"
@@ -304,7 +299,7 @@ function buildappimage() {
 }
 
 function d2ahelp() {
-printf '%s\n' "deb2appimage 0.0.4
+printf '%s\n' "deb2appimage 0.0.5
 Usage deb2appimage [argument] [input]
 
 deb2appimage is a tool for creating AppImages using deb packages. json files are used

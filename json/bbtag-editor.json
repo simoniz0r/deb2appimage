@@ -4,7 +4,8 @@
         "prerun": [
             "mkdir -p ~/.cache/deb2appimage/AppDir",
             "cd ~/.cache/deb2appimage/AppDir",
-            "nativefier https://blargbot.xyz/tags/editor --name bbtag-editor -e 4.1.4"
+            "export LATEST_STABLE_ELECTRON=\"$(curl -sL \"https://electronjs.org/releases/stable\" | grep -m1 '<h2 class=\"release-entry\" id=\"' | cut -f4 -d'\"')\"",
+            "nativefier https://blargbot.xyz/tags/editor --name bbtag-editor -e $LATEST_STABLE_ELECTRON"
         ],
         "name": "bbtag-editor",
         "version": "0.0.1",

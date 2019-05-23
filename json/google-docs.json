@@ -4,7 +4,8 @@
         "prerun": [
             "mkdir -p ~/.cache/deb2appimage/AppDir",
             "cd ~/.cache/deb2appimage/AppDir",
-            "nativefier https://docs.google.com --name google-docs -e 4.1.4 --file-download-options '{\"saveAs\": true}' --internal-urls '.*' --inject /run/media/simonizor/USBHDD/nativefier/google-clean-dark.js"
+            "export LATEST_STABLE_ELECTRON=\"$(curl -sL \"https://electronjs.org/releases/stable\" | grep -m1 '<h2 class=\"release-entry\" id=\"' | cut -f4 -d'\"')\"",
+            "nativefier https://docs.google.com --name google-docs -e $LATEST_STABLE_ELECTRON --file-download-options '{\"saveAs\": true}' --internal-urls '.*' --inject /run/media/simonizor/USBHDD/nativefier/google-clean-dark.js"
         ],
         "name": "google-docs",
         "version": "0.0.1",

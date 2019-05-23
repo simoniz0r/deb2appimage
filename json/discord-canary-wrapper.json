@@ -2,18 +2,20 @@
     "buildinfo": [
     {
         "prerun": [
-            "mkdir -p ~/.cache/deb2appimage/AppDir/usr/bin",
-            "cp -r ~/github/discord-canary-wrapper/discord-canary-linux-x64/* ~/.cache/deb2appimage/AppDir/usr/bin/"
+            "mkdir -p ~/.cache/deb2appimage/AppDir",
+            "cd ~/.cache/deb2appimage/AppDir",
+            "export LATEST_STABLE_ELECTRON=\"$(curl -sL \"https://electronjs.org/releases/stable\" | grep -m1 '<h2 class=\"release-entry\" id=\"' | cut -f4 -d'\"')\"",
+            "nativefier https://canary.discordapp.com/channels/@me --name discord-electron -e $LATEST_STABLE_ELECTRON --disk-cache-size 10000 --file-download-options '{\"saveAs\": true}' --inject /run/media/simonizor/USBHDD/nativefier/discord.js --fast-quit --icon /run/media/simonizor/USBHDD/nativefier/icon.png --single-instance --honest --internal-urls '.*discord.*'"
         ],
-        "name": "discord-canary",
-        "version": "wrapper-0.0.1",
+        "name": "discord-electron",
+        "version": "0.0.1",
         "deps": null,
         "repoarch": null,
         "distrorepo": null,
         "repoversion": null,
-        "binarypath": "/usr/bin/discord-canary",
-        "desktoppath": "/usr/bin/discord-canary.desktop",
-        "iconpath": "/usr/bin/resources/app/icon.png",
+        "binarypath": "/discord-electron-linux-x64/discord-electron",
+        "desktoppath": null,
+        "iconpath": "/discord-electron-linux-x64/resources/app/icon.png",
         "usewrapper": "true",
         "postrun": [
             null
@@ -31,14 +33,14 @@
         "setperllib": "false",
         "setgsettingsschemadir": "false",
         "setqtpluginpath": "false",
-        "exec": "/usr/bin/discord-canary.wrapper"
+        "exec": "/discord-electron-linux-x64/discord-electron.wrapper"
     }
     ],
     "authors": [
     {
         "type": "Author",
-        "author": "simonizor",
-        "url": "http://www.simonizor.net"
+        "author": "Discord",
+        "url": "https://discordapp.com"
     },
     {
         "type": "AppImage Maintainer",
@@ -47,3 +49,4 @@
     }
     ]
 }
+

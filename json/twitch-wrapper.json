@@ -4,7 +4,8 @@
         "prerun": [
             "mkdir -p ~/.cache/deb2appimage/AppDir",
             "cd ~/.cache/deb2appimage/AppDir",
-            "nativefier https://twitch.tv/directory/following --name twitch-electron -e 4.1.4 --inject /run/media/simonizor/USBHDD/nativefier/ffz.js"
+            "export LATEST_STABLE_ELECTRON=\"$(curl -sL \"https://electronjs.org/releases/stable\" | grep -m1 '<h2 class=\"release-entry\" id=\"' | cut -f4 -d'\"')\"",
+            "nativefier https://twitch.tv/directory/following --name twitch-electron -e $LATEST_STABLE_ELECTRON --inject /run/media/simonizor/USBHDD/nativefier/ffz.js"
         ],
         "name": "twitch-electron",
         "version": "0.0.1",

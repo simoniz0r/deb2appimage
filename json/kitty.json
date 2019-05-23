@@ -5,9 +5,7 @@
             "curl -sL -o ~/.cache/deb2appimage/kitty.txz https://github.com/kovidgoyal/kitty/releases/download/v0.13.3/kitty-0.13.3-x86_64.txz",
             "mkdir -p ~/.cache/deb2appimage/AppDir/usr",
             "tar -xf ~/.cache/deb2appimage/kitty.txz -C ~/.cache/deb2appimage/AppDir/usr",
-            "rm -f ~/.cache/deb2appimage/kitty.txz",
-            "echo 'kitty -d=$HOME $@' > ~/.cache/deb2appimage/AppDir/usr/bin/kitty.sh",
-            "chmod +x ~/.cache/deb2appimage/AppDir/usr/bin/kitty.sh"
+            "rm -f ~/.cache/deb2appimage/kitty.txz"
         ],
         "name": "kitty",
         "version": "0.13.3",
@@ -15,7 +13,7 @@
         "repoarch": null,
         "distrorepo": null,
         "repoversion": null,
-        "binarypath": "/usr/bin/kitty.sh",
+        "binarypath": "/usr/bin/kitty",
         "desktoppath": "/usr/share/applications/kitty.desktop",
         "iconpath": "/usr/share/icons/hicolor/256x256/apps/kitty.png",
         "usewrapper": "true",
@@ -35,7 +33,7 @@
         "setperllib": "false",
         "setgsettingsschemadir": "false",
         "setqtpluginpath": "false",
-        "exec": "/usr/bin/kitty.sh.wrapper"
+        "exec": "/usr/bin/kitty.wrapper"
     }
     ],
     "authors": [

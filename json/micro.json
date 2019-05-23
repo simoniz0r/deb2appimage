@@ -1,0 +1,52 @@
+{
+    "buildinfo": [
+    {
+        "prerun": [
+            "mkdir -p ~/.cache/deb2appimage/AppDir/usr/bin",
+            "curl -sL 'https://github.com/zyedidia/micro/releases/download/nightly/micro-1.4.2-dev.61-linux64.tar.gz' -o ~/.cache/deb2appimage/micro.tar.gz",
+            "tar xzf ~/.cache/deb2appimage/micro.tar.gz -C ~/.cache/deb2appimage",
+            "mv ~/.cache/deb2appimage/micro-1.4.2-dev.61/* ~/.cache/deb2appimage/AppDir/usr/bin/",
+            "chmod +x ~/.cache/deb2appimage/AppDir/usr/bin/micro"
+        ],
+        "name": "micro",
+        "version": "1.4.2.dev.61",
+        "deps": "xclip",
+        "repoarch": "amd64",
+        "distrorepo": "Debian",
+        "repoversion": "stretch",
+        "binarypath": "/usr/bin/micro",
+        "desktoppath": null,
+        "iconpath": null,
+        "usewrapper": "false",
+        "postrun": [
+            null
+        ]
+    }
+    ],
+    "apprunconf": [
+    {
+        "setpath": "true",
+        "setlibpath": "false",
+        "setpythonpath": "false",
+        "setpythonhome": "false",
+        "setpythondontwritebytecode": "false",
+        "setxdgdatadirs": "false",
+        "setperllib": "false",
+        "setgsettingsschemadir": "false",
+        "setqtpluginpath": "false",
+        "exec": "/usr/bin/micro"
+    }
+    ],
+    "authors": [
+    {
+        "type": "Author",
+        "author": "zyedidia",
+        "url": "https://github.com/zyedidia/micro"
+    },
+    {
+        "type": "AppImage Maintainer",
+        "author": "simonizor",
+        "url": "http://www.simonizor.net"
+    }
+    ]
+}

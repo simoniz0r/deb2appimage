@@ -5,34 +5,7 @@
 # Description: Build AppImages from deb packages on any distro with simple json configuration
 # Dependencies: jq, curl, ar, tar
 
-# detect argument input
-for D2AARG in $@; do
-    case $D2AARG in
-        # set path to json file (required)
-        -j|--json)
-            shift
-            D2A_JSON="$(readlink -f $1)"
-            shift
-            ;;
-        # set output directory (optional)
-        -o|--output)
-            shift
-            D2A_OUTPUT="$(readlink -f $1)"
-            shift
-            ;;
-        # turn on quiet mode
-        -q|--quiet)
-            D2A_QUIET="TRUE"
-            shift
-            ;;
-        # turn on debug mode
-        --debug)
-            set -x
-            shift
-            ;;
-    esac
-done
-
+# function to handle exits
 function d2aexit() {
     case $1 in
         # normal exit; remove "$HOME"/.cache/deb2appimage before exiting
@@ -42,10 +15,12 @@ function d2aexit() {
             ;;
         # missing dependencies
         1)
-            if [ ! "$D2A_QUIET" = "TRUE" ]; then
+            if [[ ! "$D2A_QUIET" = "TRUE" ]]; then
                 echo "Dependency Error!"
                 echo "Missing: $2"
-                [ -n "$3" ] && echo "$3"
+                if [[ -n "$3" ]]; then
+                    echo "$3"
+                fi
                 echo "Exit code 1"
             fi
             rm -rf "$HOME"/.cache/deb2appimage/*
@@ -53,10 +28,12 @@ function d2aexit() {
             ;;
         # user input error
         2)
-            if [ ! "$D2A_QUIET" = "TRUE" ]; then
+            if [[ ! "$D2A_QUIET" = "TRUE" ]]; then
                 echo "Input Error!"
                 echo "$2"
-                [ -n "$3" ] && echo "$3"
+                if [[ -n "$3" ]]; then
+                    echo "$3"
+                fi
                 echo "Exit code 2"
             fi
             rm -rf "$HOME"/.cache/deb2appimage/*
@@ -64,10 +41,12 @@ function d2aexit() {
             ;;
         # curl error
         3)
-            if [ ! "$D2A_QUIET" = "TRUE" ]; then
+            if [[ ! "$D2A_QUIET" = "TRUE" ]]; then
                 echo "Download Error!"
                 echo "Error while downloading $2"
-                [ -n "$3" ] && echo "$3"
+                if [[ -n "$3" ]]; then
+                    echo "$3"
+                fi
                 echo "Exit code 3"
             fi
             rm -rf "$HOME"/.cache/deb2appimage/*
@@ -75,10 +54,12 @@ function d2aexit() {
             ;;
         # file/dir error
         4)
-            if [ ! "$D2A_QUIET" = "TRUE" ]; then
+            if [[ ! "$D2A_QUIET" = "TRUE" ]]; then
                 echo "Directory/File Error!"
                 echo "Error while creating file/directory $2"
-                [ -n "$3" ] && echo "$3"
+                if [[ -n "$3" ]]; then
+                    echo "$3"
+                fi
                 echo "Exit code 4"
             fi
             rm -rf "$HOME"/.cache/deb2appimage/*
@@ -86,10 +67,12 @@ function d2aexit() {
             ;;
         # deb extraction error
         5)
-            if [ ! "$D2A_QUIET" = "TRUE" ]; then
+            if [[ ! "$D2A_QUIET" = "TRUE" ]]; then
                 echo "Error Extracting Deb!"
                 echo "Error while extracting $2"
-                [ -n "$3" ] && echo "$3"
+                if [[ -n "$3" ]]; then
+                    echo "$3"
+                fi
                 echo "Exit code 5"
             fi
             rm -rf "$HOME"/.cache/deb2appimage/*
@@ -97,10 +80,12 @@ function d2aexit() {
             ;;
         # appimagetool error
         6)
-            if [ ! "$D2A_QUIET" = "TRUE" ]; then
+            if [[ ! "$D2A_QUIET" = "TRUE" ]]; then
                 echo "Error Running appimagetool!"
                 echo "appimagetool failed to build $2"
-                [ -n "$3" ] && echo "$3"
+                if [[ -n "$3" ]]; then
+                    echo "$3"
+                fi
                 echo "Exit code 6"
             fi
             rm -rf "$HOME"/.cache/deb2appimage/*
@@ -110,7 +95,7 @@ function d2aexit() {
 }
 
 function d2aprerun() {
-    if [ -d "$HOME/.cache/deb2appimage/AppDir" ]; then
+    if [[ -d "$HOME/.cache/deb2appimage/AppDir" ]]; then
         d2aexit 4 "$HOME/.cache/deb2appimage/AppDir" "Directory exists!"
     fi
     mkdir -p "$HOME"/.cache/deb2appimage/AppDir
@@ -122,7 +107,7 @@ function d2aprerun() {
 # execute prerun command if not null
 function preruncmd() {
     PRERUN_CMD="$(jq -r '.buildinfo[0].prerun[]' "$HOME"/.cache/deb2appimage/build.json | sed "s,^.*,& \&\& ,g" | tr -d '\n' | rev | cut -f3- -d' ' | rev)"
-    if [ ! "$PRERUN_CMD" = "null" ]; then
+    if [[ ! "$PRERUN_CMD" = "null" ]]; then
         bash -c "$PRERUN_CMD" || d2aexit 2 "'prerun' failed!" "Failed to execute: $PRERUN_CMD"
     fi
 }
@@ -151,16 +136,22 @@ function getlatestdeb() {
 
 # function that uses jq to get package's deps from build.json
 function getappdeps() {
-    if [ ! "$(jq -r '.buildinfo[0].deps' "$HOME"/.cache/deb2appimage/build.json)" = "null" ]; then
+    if [[ ! "$(jq -r '.buildinfo[0].deps' "$HOME"/.cache/deb2appimage/build.json)" = "null" ]]; then
         COUNT_NUM=1
         # run a for loop to download the latest version of each deb using getlatestdeb function
         for appdep in $(jq -r '.buildinfo[0].deps' "$HOME"/.cache/deb2appimage/build.json | tr ',' '\n'); do
             DEB_REPO_DISTRO="$(jq -r '.buildinfo[0].distrorepo' "$HOME"/.cache/deb2appimage/build.json | cut -f${COUNT_NUM} -d',')"
             DEB_REPO_VERSION="$(jq -r '.buildinfo[0].repoversion' "$HOME"/.cache/deb2appimage/build.json | cut -f${COUNT_NUM} -d',')"
             DEB_REPO_ARCH="$(jq -r '.buildinfo[0].repoarch' "$HOME"/.cache/deb2appimage/build.json | cut -f${COUNT_NUM} -d',')"
-            [ -z "$DEB_REPO_DISTRO" ] && DEB_REPO_DISTRO="$DEB_LAST_DISTRO"
-            [ -z "$DEB_REPO_ARCH" ] && DEB_REPO_ARCH="$DEB_LAST_ARCH"
-            [ -z "$DEB_REPO_VERSION" ] && DEB_REPO_VERSION="$DEB_LAST_VERSION"
+            if [[ -z "$DEB_REPO_DISTRO" ]]; then
+                DEB_REPO_DISTRO="$DEB_LAST_DISTRO"
+            fi
+            if [[ -z "$DEB_REPO_ARCH" ]]; then
+                DEB_REPO_ARCH="$DEB_LAST_ARCH"
+            fi
+            if [[ -z "$DEB_REPO_VERSION" ]]; then
+                DEB_REPO_VERSION="$DEB_LAST_VERSION"
+            fi
             getlatestdeb "$appdep" "$DEB_REPO_DISTRO" "$DEB_REPO_VERSION" "$DEB_REPO_ARCH"
             COUNT_NUM=$(($COUNT_NUM+1))
             DEB_LAST_DISTRO="$DEB_REPO_DISTRO"
@@ -201,16 +192,20 @@ function prepareappdir() {
     DESKTOP_PATH="$(jq -r '.buildinfo[0].desktoppath' "$HOME"/.cache/deb2appimage/build.json)"
     ICON_PATH="$(jq -r '.buildinfo[0].iconpath' "$HOME"/.cache/deb2appimage/build.json)"
     USE_WRAPPER="$(jq -r '.buildinfo[0].usewrapper' "$HOME"/.cache/deb2appimage/build.json)"
-    [ "$APP_NAME" = "null" ] && d2aexit 2 "Missing required 'appname' in json file"
-    [ ! -f "$HOME/.cache/deb2appimage/AppDir$BINARY_PATH" ] && d2aexit 2 "Binary file not found at binarypath in json file"
+    if [[ "$APP_NAME" = "null" ]]; then
+        d2aexit 2 "Missing required 'appname' in json file"
+    fi
+    if [[ ! -f "$HOME/.cache/deb2appimage/AppDir$BINARY_PATH" ]]; then
+        d2aexit 2 "Binary file not found at binarypath in json file"
+    fi
     # Download icon if it does not exist
-    if [ ! -f "$HOME/.cache/deb2appimage/AppDir$ICON_PATH" ]; then
+    if [[ ! -f "$HOME/.cache/deb2appimage/AppDir$ICON_PATH" ]]; then
         echo "$ICON_PATH not found; downloading generic icon..."
         curl -sL "https://raw.githubusercontent.com/iconic/open-iconic/master/png/file-6x.png" -o "$HOME"/.cache/deb2appimage/AppDir/."$APP_NAME".png
         ICON_PATH="/.$APP_NAME.png"
     fi
     # Create .desktop file if it does not exist
-    if [ ! -f "$HOME/.cache/deb2appimage/AppDir$DESKTOP_PATH" ]; then
+    if [[ ! -f "$HOME/.cache/deb2appimage/AppDir$DESKTOP_PATH" ]]; then
         echo "$DESKTOP_PATH not found; creating generic .desktop file..."
         cat > "$HOME"/.cache/deb2appimage/AppDir/"$APP_NAME".desktop << EOL
 [Desktop Entry]
@@ -227,13 +222,13 @@ EOL
     else
         cp "$HOME"/.cache/deb2appimage/AppDir"$DESKTOP_PATH" "$HOME"/.cache/deb2appimage/AppDir/"$APP_NAME".desktop
         DESKTOP_CATEGORIES="$(grep '^Categories=' "$HOME"/.cache/deb2appimage/AppDir/"$APP_NAME".desktop)"
-        if [ -z "$DESKTOP_CATEGORIES" ]; then
+        if [[ -z "$DESKTOP_CATEGORIES" ]]; then
             echo "Categories=Utility;" >> "$HOME"/.cache/deb2appimage/AppDir/"$APP_NAME".desktop
-        elif [ ! "$(echo $DESKTOP_CATEGORIES | rev | cut -c1)" = ";" ]; then
+        elif [[ ! "$(echo $DESKTOP_CATEGORIES | rev | cut -c1)" = ";" ]]; then
             sed -i 's%^Categories=.*%Categories=Utility;%g' "$HOME"/.cache/deb2appimage/AppDir/"$APP_NAME".desktop
         fi
     fi
-    if [ "$USE_WRAPPER" = "true" ]; then
+    if [[ "$USE_WRAPPER" = "true" ]]; then
         curl -sSL "https://raw.githubusercontent.com/simoniz0r/deb2appimage/master/resources/desktopintegration" -o "$HOME"/.cache/deb2appimage/AppDir"$BINARY_PATH".wrapper || d2aexit 3 "wrapper script"
         curl -sSL "https://github.com/darealshinji/AppImageKit-dialog/releases/download/continuous/dialog-x86_64" -o "$HOME"/.cache/deb2appimage/AppDir/dialog || d2aexit 3 "wrapper script"
         chmod a+x "$HOME"/.cache/deb2appimage/AppDir/dialog
@@ -278,7 +273,7 @@ EOL
 # function that runs postruncmd
 function postruncmd() {
     POSTRUN_CMD="$(jq -r '.buildinfo[0].postrun[]' "$HOME"/.cache/deb2appimage/build.json | sed "s,^.*,& \&\& ,g" | tr -d '\n' | rev | cut -f3- -d' ' | rev)"
-    if [ ! "$POSTRUN_CMD" = "null" ]; then
+    if [[ ! "$POSTRUN_CMD" = "null" ]]; then
         bash -c "$POSTRUN_CMD" || d2aexit 2 "'postrun' failed!" "Failed to execute: $POSTRUN_CMD"
     fi
 }
@@ -286,12 +281,12 @@ function postruncmd() {
 # function that downloads appimagetool and uses it to build the AppImage to the --output directory
 function buildappimage() {
     APP_VERSION="$(jq -r '.buildinfo[0].version' "$HOME"/.cache/deb2appimage/build.json)"
-    if [ -z "$APP_VERSION" ] || [ "$APP_VERSION" = "null" ]; then
+    if [[ -z "$APP_VERSION" ]] || [[ "$APP_VERSION" = "null" ]]; then
         APP_VERSION="$(date +'%F')"
     fi
     curl -sL "https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage" -o "$HOME"/.cache/deb2appimage/appimagetool || d2aexit 3 "appimagetool"
     chmod +x "$HOME"/.cache/deb2appimage/appimagetool
-    if [ "$D2A_QUIET" = "TRUE" ]; then
+    if [[ "$D2A_QUIET" = "TRUE" ]]; then
         ARCH="$(uname -m)" "$HOME"/.cache/deb2appimage/appimagetool "$@" "$HOME"/.cache/deb2appimage/AppDir "$D2A_OUTPUT"/"$APP_NAME"-"$APP_VERSION"-"$(uname -m)".AppImage > /dev/null 2>&1 || d2aexit 6 "$APP_NAME"
     else
         ARCH="$(uname -m)" "$HOME"/.cache/deb2appimage/appimagetool "$@" "$HOME"/.cache/deb2appimage/AppDir "$D2A_OUTPUT"/"$APP_NAME"-"$APP_VERSION"-"$(uname -m)".AppImage || d2aexit 6 "$APP_NAME"
@@ -309,11 +304,11 @@ those files will have to be placed in '~/.cache/deb2appimage/AppDir/' manually w
 prerun script.
 
 Arguments:
---help|-h       Show this output and exit
---json|-j       Specify the location of the json file for building the AppImage (required)
---output|-o     Specify the output directory of the AppImage (optional; $HOME will be used by default)
---quiet|-q      Enable quiet mode
---debug         Enable debug mode
+--help, -h       Show this output and exit
+--json, -j       Specify the location of the json file for building the AppImage (required)
+--output, -o     Specify the output directory of the AppImage (optional; $HOME will be used by default)
+--quiet, -q      Enable quiet mode
+--debug          Enable debug mode
 
 Any arguments not listed above will be passed to 'appimagetool' when building the AppImage.
 
@@ -325,38 +320,93 @@ deb2appimage -j $HOME/my-app.json -o $HOME/AppImages --debug
 "
 }
 
-# check for help argument
-case $1 in
-    -h|--help)
-        d2ahelp
-        d2aexit 0
-        ;;
-esac
+# detect arguments
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        # output help
+        -h|--help)
+            d2ahelp
+            d2aexit 0
+            ;;
+        # set path to json file (required)
+        -j|--json)
+            shift
+            D2A_JSON="$(readlink -f $1)"
+            shift
+            ;;
+        # set output directory (optional)
+        -o|--output)
+            shift
+            D2A_OUTPUT="$(readlink -f $1)"
+            shift
+            ;;
+        # turn on quiet mode
+        -q|--quiet)
+            D2A_QUIET="TRUE"
+            shift
+            ;;
+        # turn on debug mode
+        --debug)
+            set -x
+            shift
+            ;;
+    esac
+done
 
 # check for deb2appimage's dependencies and exit if not installed
 mkdir -p "$HOME"/.cache/deb2appimage
-type jq > /dev/null 2>&1 || echo "jq" >> "$HOME"/.cache/deb2appimage/missingdeps
-type curl > /dev/null 2>&1 || echo "curl" >> "$HOME"/.cache/deb2appimage/missingdeps
-type ar > /dev/null 2>&1 || echo "ar (binutils)" >> "$HOME"/.cache/deb2appimage/missingdeps
-type tar > /dev/null 2>&1 || echo "tar" >> "$HOME"/.cache/deb2appimage/missingdeps
-[ -f "$HOME/.cache/deb2appimage/missingdeps" ] && d2aexit 1 "$(cat "$HOME"/.cache/deb2appimage/missingdeps | tr '\n' ',')"
+unset MISSING_DEPS
+if [[ ! "$(command -v jq)" ]]; then
+    MISSING_DEPS+=("jq")
+fi
+if [[ ! "$(command -v curl)" ]]; then
+    MISSING_DEPS+=("curl")
+fi
+if [[ ! "$(command -v ar)" ]]; then
+    MISSING_DEPS+=("binutils")
+fi
+if [[ ! "$(command -v tar)" ]]; then
+    MISSING_DEPS+=("tar")
+fi
+if [[ ! -z "$MISSING_DEPS" ]]; then
+    d2aexit 1 "$(echo ${MISSING_DEPS[@]})"
+fi
 
 # check required inputs
-[ -z "$D2A_JSON" ] && d2ahelp && d2aexit 2 "Missing required --json input"
+if [[ -z "$D2A_JSON" ]]; then
+    d2ahelp 
+    d2aexit 2 "Missing required --json input"
+fi
+# make sure json input is valid
 jq '.' "$D2A_JSON" > /dev/null 2>&1 || d2aexit 2 "$D2A_JSON not valid json file"
-[ -z "$D2A_OUTPUT" ] && D2A_OUTPUT="$HOME"
+# set default output location
+if [[ -z "$D2A_OUTPUT" ]]; then
+    D2A_OUTPUT="$HOME"
+fi
 
 d2aprerun
-[ ! "$D2A_QUIET" = "TRUE" ] && echo "Executing prerun..."
+if [[ ! "$D2A_QUIET" = "TRUE" ]]; then
+    echo "Executing prerun..."
+fi
 preruncmd
-[ ! "$D2A_QUIET" = "TRUE" ] && echo "Downloading dependencies..."
+if [[ ! "$D2A_QUIET" = "TRUE" ]]; then
+    echo "Downloading dependencies..."
+fi
 getappdeps
-[ ! "$D2A_QUIET" = "TRUE" ] && echo "Extracting dependencies..."
+if [[ ! "$D2A_QUIET" = "TRUE" ]]; then
+    echo "Extracting dependencies..."
+fi
 finddownloadeddebs
-[ ! "$D2A_QUIET" = "TRUE" ] && echo "Preparing AppImage AppDir..."
+if [[ ! "$D2A_QUIET" = "TRUE" ]]; then
+    echo "Preparing AppImage AppDir..."
+fi
 prepareappdir
 prepareapprun
-[ ! "$D2A_QUIET" = "TRUE" ] && echo "Executing postrun..."
+if [[ ! "$D2A_QUIET" = "TRUE" ]]; then
+    echo "Executing postrun..."
+fi
 postruncmd
-[ ! "$D2A_QUIET" = "TRUE" ] && echo "Using 'appimagetool' to build AppImage for '$APP_NAME' to '$D2A_OUTPUT'..."
+if [[ ! "$D2A_QUIET" = "TRUE" ]]; then
+    echo "Using 'appimagetool' to build AppImage for '$APP_NAME' to '$D2A_OUTPUT'..."
+fi
 buildappimage && d2aexit 0

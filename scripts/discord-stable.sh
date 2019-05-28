@@ -90,7 +90,7 @@ function updatediscordstable() {
 
 case $1 in
     --remove)
-        ./usr/bin/discord.wrapper --remove-appimage-desktop-integration && echo "Removed .desktop file and icon for menu integration for Discord." || echo "Failed to remove .desktop file and icon!"
+        "$RUNNING_DIR"/discord.wrapper --remove-appimage-desktop-integration && echo "Removed .desktop file and icon for menu integration for Discord." || echo "Failed to remove .desktop file and icon!"
         exit 0
         ;;
     --help)
@@ -107,7 +107,7 @@ case $1 in
         else
             updatediscordstable
         fi
-        ./usr/bin/discord.wrapper &
+        "$RUNNING_DIR"/discord.wrapper &
         sleep 30
         while ps aux | grep -v 'grep' | grep -q 'Discord'; do
             sleep 30

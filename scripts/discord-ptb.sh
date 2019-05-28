@@ -90,7 +90,7 @@ function updatediscordptb() {
 
 case $1 in
     --remove)
-        ./usr/bin/discord-ptb.wrapper --remove-appimage-desktop-integration && echo "Removed .desktop file and icon for menu integration for Discord PTB." || echo "Failed to remove .desktop file and icon!"
+        "$RUNNING_DIR"/discord-ptb.wrapper --remove-appimage-desktop-integration && echo "Removed .desktop file and icon for menu integration for Discord PTB." || echo "Failed to remove .desktop file and icon!"
         exit 0
         ;;
     --help)
@@ -107,7 +107,7 @@ case $1 in
         else
             updatediscordptb
         fi
-        ./usr/bin/discord-ptb.wrapper &
+        "$RUNNING_DIR"/discord-ptb.wrapper &
         sleep 30
         while ps aux | grep -v 'grep' | grep -q 'DiscordPTB'; do
             sleep 30

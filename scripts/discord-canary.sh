@@ -90,7 +90,7 @@ function updatediscordcanary() {
 
 case $1 in
     --remove)
-        ./usr/bin/discord-canary.wrapper --remove-appimage-desktop-integration && echo "Removed .desktop file and icon for menu integration for Discord Canary." || echo "Failed to remove .desktop file and icon!"
+        "$RUNNING_DIR"/discord-canary.wrapper --remove-appimage-desktop-integration && echo "Removed .desktop file and icon for menu integration for Discord Canary." || echo "Failed to remove .desktop file and icon!"
         exit 0
         ;;
     --help)
@@ -107,7 +107,7 @@ case $1 in
         else
             updatediscordcanary
         fi
-        ./usr/bin/discord-canary.wrapper &
+        "$RUNNING_DIR"/discord-canary.wrapper &
         sleep 30
         while ps aux | grep -v 'grep' | grep -q 'DiscordCanary'; do
             sleep 30

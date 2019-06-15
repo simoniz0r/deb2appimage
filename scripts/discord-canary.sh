@@ -8,7 +8,7 @@ function updatediscordcanary() {
     NEW_APP_VERSION="$(curl -sSL -I -X GET "https://discordapp.com/api/download/canary?platform=linux&format=tar.gz" | grep -im1 '^location:' | rev | cut -f1 -d'-' | cut -f3- -d'.' | rev)"
     if [[ ! -z "$NEW_APP_VERSION" ]] && [[ ! "$APP_VERSION" == "$NEW_APP_VERSION" ]]; then
         GITHUB_DL_URL="https://github.com/simoniz0r/Discord-Canary-AppImage/releases/download/v$NEW_APP_VERSION/discord-canary-$NEW_APP_VERSION-x86_64.AppImage"
-        if [[ ! "$(curl -sSL -I -X GET "$GITHUB_DL_URL" | head -n 1)" == "HTTP/1.1 404 Not Found" ]]; then
+        if [[ "$(curl -sL -I -X HEAD "$GITHUB_DL_URL" | grep -m1 '^Status:' | cut -f2 -d' ')" == "302" ]]; then
             fltk-dialog --question --center --text="New Discord Canary version has been released!\nDownload version $NEW_APP_VERSION now?"
             case $? in
                 1)

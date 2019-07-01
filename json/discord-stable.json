@@ -37,7 +37,7 @@
         "setperllib": "false",
         "setgsettingsschemadir": "false",
         "setqtpluginpath": "false",
-        "exec": "/usr/bin/discord-stable.sh"
+        "exec": "discord-stable.sh"
     }
     ],
     "authors": [

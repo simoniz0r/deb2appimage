@@ -37,7 +37,7 @@
         "setperllib": "false",
         "setgsettingsschemadir": "false",
         "setqtpluginpath": "false",
-        "exec": "/usr/bin/discord-canary.sh"
+        "exec": "discord-canary.sh"
     }
     ],
     "authors": [

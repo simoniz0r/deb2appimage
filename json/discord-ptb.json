@@ -37,7 +37,7 @@
         "setperllib": "false",
         "setgsettingsschemadir": "false",
         "setqtpluginpath": "false",
-        "exec": "/usr/bin/discord-ptb.sh"
+        "exec": "discord-ptb.sh"
     }
     ],
     "authors": [

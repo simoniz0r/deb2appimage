@@ -7,7 +7,7 @@
             "chmod a+x ~/.cache/deb2appimage/AppDir/usr/bin/discord-canary.sh",
             "curl -sL -o ~/.cache/deb2appimage/AppDir/usr/bin/discord-canary.json 'https://raw.githubusercontent.com/simoniz0r/deb2appimage/master/json/discord-canary.json'",
             "curl -sL -o ~/.cache/deb2appimage/debs/discord-canary.deb 'https://discordapp.com/api/download/canary?platform=linux&format=deb'",
-            "curl -sL -o ~/.cache/deb2appimage/AppDir/usr/bin/deb2appimage 'https://github.com/simoniz0r/deb2appimage/releases/download/v0.0.3/deb2appimage-0.0.3-x86_64.AppImage'",
+            "curl -sL -o ~/.cache/deb2appimage/AppDir/usr/bin/deb2appimage 'https://github.com/simoniz0r/deb2appimage/releases/download/v0.0.5/deb2appimage-0.0.5-x86_64.AppImage'",
             "curl -sL -o ~/.cache/deb2appimage/AppDir/usr/bin/fltk-dialog 'https://raw.githubusercontent.com/simoniz0r/deb2appimage/master/resources/fltk-dialog'",
             "curl -sSL -I -X GET 'https://discordapp.com/api/download/canary?platform=linux&format=tar.gz' | grep -im1 '^location:' | rev | cut -f1 -d'-' | cut -f3- -d'.' | rev > ~/.cache/deb2appimage/AppDir/usr/bin/discord-canary-version"
         ],

@@ -2,7 +2,15 @@
     "buildinfo": [
     {
         "prerun": [
-            "curl -sSL -o ~/.cache/deb2appimage/debs/vscode.deb 'https://go.microsoft.com/fwlink/?LinkID=760868'"
+            "mkdir -p ~/.cache/deb2appimage/AppDir/usr/bin",
+            "mkdir -p ~/.cache/deb2appimage/AppDir/usr/share/code",
+            "curl -sL -o ~/.cache/deb2appimage/AppDir/usr/share/code/code.sh 'https://raw.githubusercontent.com/simoniz0r/deb2appimage/master/scripts/code.sh",
+            "chmod +x ~/.cache/deb2appimage/AppDir/usr/share/code/code.sh",
+            "curl -sL -o ~/.cache/deb2appimage/AppDir/usr/share/code/vscode.json 'https://raw.githubusercontent.com/simoniz0r/deb2appimage/master/json/vscode.json'",
+            "curl -sL -o ~/.cache/deb2appimage/AppDir/usr/bin/deb2appimage 'https://github.com/simoniz0r/deb2appimage/releases/download/v0.0.5/deb2appimage-0.0.5-x86_64.AppImage'",
+            "curl -sL -o ~/.cache/deb2appimage/AppDir/usr/bin/fltk-dialog 'https://raw.githubusercontent.com/simoniz0r/deb2appimage/master/resources/fltk-dialog'",
+            "curl -sLIX HEAD 'https://update.code.visualstudio.com/latest/linux-deb-x64/stable' | grep -m1 'Location: ' | cut -f2 -d'_' > ~/.cache/deb2appimage/AppDir/usr/share/code/.version",
+            "curl -sSL -o ~/.cache/deb2appimage/debs/vscode.deb 'https://update.code.visualstudio.com/latest/linux-deb-x64/stable'"
         ],
         "name": "vscode",
         "version": "latest",
@@ -10,7 +18,7 @@
         "repoarch": "amd64",
         "distrorepo": "Debian",
         "repoversion": "stretch",
-        "binarypath": "/usr/share/code/code",
+        "binarypath": "/usr/share/code/code.sh",
         "desktoppath": "/usr/share/applications/code.desktop",
         "iconpath": "/usr/share/code/resources/app/resources/linux/code.png",
         "usewrapper": "true",
@@ -21,7 +29,7 @@
     ],
     "apprunconf": [
     {
-        "setpath": "false",
+        "setpath": "true",
         "setlibpath": "true",
         "setpythonpath": "false",
         "setpythonhome": "false",
@@ -30,7 +38,7 @@
         "setperllib": "false",
         "setgsettingsschemadir": "false",
         "setqtpluginpath": "false",
-        "exec": "/usr/share/code/code.wrapper"
+        "exec": "/usr/share/code/code.sh.wrapper"
     }
     ],
     "authors": [

@@ -4,7 +4,7 @@
         "prerun": [
             "mkdir -p ~/.cache/deb2appimage/AppDir/usr/bin",
             "mkdir -p ~/.cache/deb2appimage/AppDir/usr/share/code",
-            "curl -sL -o ~/.cache/deb2appimage/AppDir/usr/share/code/code.sh 'https://raw.githubusercontent.com/simoniz0r/deb2appimage/master/scripts/code.sh",
+            "curl -sL -o ~/.cache/deb2appimage/AppDir/usr/share/code/code.sh 'https://raw.githubusercontent.com/simoniz0r/deb2appimage/master/scripts/code.sh'",
             "chmod +x ~/.cache/deb2appimage/AppDir/usr/share/code/code.sh",
             "curl -sL -o ~/.cache/deb2appimage/AppDir/usr/share/code/vscode.json 'https://raw.githubusercontent.com/simoniz0r/deb2appimage/master/json/vscode.json'",
             "curl -sL -o ~/.cache/deb2appimage/AppDir/usr/bin/deb2appimage 'https://github.com/simoniz0r/deb2appimage/releases/download/v0.0.5/deb2appimage-0.0.5-x86_64.AppImage'",

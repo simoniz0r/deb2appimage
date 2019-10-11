@@ -16,7 +16,10 @@ vscode_build() {
         return 1
     fi
     # use deb2appimage to build latest vscode version
+    fltk-dialog --progress --center --pulsate --no-cancel --no-escape --text="Building Visual Studio Code AppImage..." &
+    PROGRESS_PID=$!
     deb2appimage -j "$RUNNING_LOC"/vscode.json -o ~/.cache
+    kill -SIGTERM -f $PROGRESS_PID
     if [[ ! -f "$HOME/.cache/vscode-latest-x86_64.AppImage" ]]; then
         return 1
     fi
